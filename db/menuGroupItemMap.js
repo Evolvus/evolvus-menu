@@ -6,12 +6,12 @@ const ObjectId = require("mongodb").ObjectID;
 var MenuGroupItemMap = mongoose.model("MenuGroupItemMap", menuGroupItemMapSchema);
 
 // Stores the MenuGroupItemMap object into database
-module.exports.saveMenuGroupItemMap= (menuGroupItemMapObj) => {
+module.exports.saveMenuGroupItemMap = (menuGroupItemMapObj) => {
 
   return new Promise((resolve, reject) => {
     try {
       var menuGroupItemMap = new MenuGroupItemMap(menuGroupItemMapObj);
-        menuGroupItemMap.save().then((menu) => {
+      menuGroupItemMap.save().then((menu) => {
         debug("saved successfully", menu.menuGroupItemMapCode);
         resolve(menu);
       }, (err) => {
@@ -41,21 +41,20 @@ module.exports.updateMenuGroupItemMap = (id, update) => {
 
           var updateObject = new MenuGroupItemMap(update);
           var errors = updateObject.validateSync();
-          if (errors != null)
-         {
+          if (errors != null) {
 
-           throw new Error(`IllegalArgumentException${errors.message}`);
+            throw new Error(`IllegalArgumentException${errors.message}`);
 
           }
           MenuGroupItemMap.update({
-        _id: id
+            _id: id
           }, {
             $set: update
-            }).then((response) => {
+          }).then((response) => {
             if (response.nModified === 0) {
               debug("failed to update");
               reject("Sorry! this data to be updated is invalid or you are trying to update with the same values");
-            } else{
+            } else {
               debug("updated successfully");
               resolve(response);
             }
@@ -83,7 +82,7 @@ module.exports.FindByCode = (codevalue) => {
   return new Promise((resolve, reject) => {
     try {
       MenuGroupItemMap.findOne({
-           menuGroupItemMapCode: codevalue
+        menuGroupItemMapCode: codevalue
       }).then((menu) => {
         if (menu) {
           debug(`MenuGroupItemMap found ${menu.menuGroupItemMapId}`);
@@ -114,4 +113,4 @@ module.exports.FindAllMenuGroupItemMap = () => {
 //Used only for testing
 module.exports.deleteAll = () => {
   return MenuGroupItemMap.remove({});
- };
+};

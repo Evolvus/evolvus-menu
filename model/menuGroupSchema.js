@@ -52,10 +52,10 @@ module.exports.schema = {
       "minLength": 1,
       "maxLength": 50
     },
-    "verifiedFlag":{
+    "verifiedFlag": {
       "type": "number"
     }
 
-},
+  },
   "required": ["menuGroupCode", "applicationCode", "title"]
 };

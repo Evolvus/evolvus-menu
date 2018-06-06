@@ -18,13 +18,13 @@ describe("menuGroup db testing", () => {
     });
   });
   var testmenuGroup = {
-    "menuGroupId":"mg1",
+    "menuGroupId": "mg1",
     "menuGroupCode": "first",
     "applicationCode": "RTP",
     "title": "first menugroup"
   };
   var testmenuGroup1 = {
-    "menuGroupId":"mg2",
+    "menuGroupId": "mg2",
     "menuGroupCode": "second",
     "applicationCode": "RTP",
     "title": "second menugroup"
@@ -142,9 +142,9 @@ describe("menuGroup db testing", () => {
     //add 2 menuGroup
     let id;
     let update = {
-      menuGroupId:"mg3",
+      menuGroupId: "mg3",
       menuGroupCode: "first",
-      applicationCode:"RTP",
+      applicationCode: "RTP",
       title: "first update menugroup"
     };
     beforeEach((done) => {

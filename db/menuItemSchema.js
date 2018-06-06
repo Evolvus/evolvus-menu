@@ -6,17 +6,16 @@ var menuItemSchema = new mongoose.Schema({
     required: true,
   },
   menuGroupId: {
-    type:String,
-    required: true,
-
+    type: String,
+    required: true
   },
-  menuItemType:{
-    type:String,
+  menuItemType: {
+    type: String,
     minLength: 1,
     maxLength: 50
   },
-  applicationCode:{
-    type:String,
+  applicationCode: {
+    type: String,
     minLength: 1,
     maxLength: 4,
     required: true
@@ -28,38 +27,35 @@ var menuItemSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 4
   },
-  createdBy:{
+  createdBy: {
     type: String,
     required: true,
     minlength: 1
   },
-  creationDate:{
+  creationDate: {
     type: Date,
-    //required: true
+    required: true
   },
-  lastUpdatedDate:{
-    type: Date,
-    //required: true
+  lastUpdatedDate: {
+    type: Date
   },
-  updatedBy:{
+  updatedBy: {
     type: String,
-    //required: true,
     minlength: 1
   },
-  enabledFlag :{
-    type: String,
-    //required: true
+  enabledFlag: {
+    type: String
   },
   title: {
     type: String,
-    //required: true,
+    required: true,
     minlength: 1,
   },
   icon: {
     type: String,
     minlength: 1,
   },
-  menuItemOrder:{
+  menuItemOrder: {
     type: Number,
   }
 });

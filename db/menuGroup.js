@@ -6,7 +6,6 @@ const ObjectId = require("mongodb").ObjectID;
 //Creates menuGroup collection in database
 var MenuGroup = mongoose.model("MenuGroup", menuGroupSchema);
 
-
 // Stores the menuGroup object into database
 module.exports.saveMenuGroup = (menuGroupObj) => {
   return new Promise((resolve, reject) => {
@@ -29,6 +28,7 @@ module.exports.saveMenuGroup = (menuGroupObj) => {
   });
 };
 
+
 //Finds one menuGroup by its code and updates it with new values
 module.exports.updatemenuGroup = (id, update) => {
   return new Promise((resolve, reject) => {
@@ -40,7 +40,7 @@ module.exports.updatemenuGroup = (id, update) => {
           var updateObject = new MenuGroup(update);
           var errors = updateObject.validateSync();
           if (errors != null) {
-         throw new Error(`IllegalArgumentException: ${errors.message}`);
+            throw new Error(`IllegalArgumentException: ${errors.message}`);
           }
           MenuGroup.update({
             _id: id
@@ -76,7 +76,7 @@ module.exports.updatemenuGroup = (id, update) => {
 module.exports.FindByCode = (codevalue) => {
   return new Promise((resolve, reject) => {
     try {
-      menuGroup.findOne({
+      MenuGroup.findOne({
         menuGroupCode: codevalue
       }).then((menu) => {
         if (menu) {
@@ -97,7 +97,6 @@ module.exports.FindByCode = (codevalue) => {
     }
   });
 };
-
 
 //Returns all the application entities
 module.exports.FindAllmenuGroup = () => {

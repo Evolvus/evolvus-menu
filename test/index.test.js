@@ -24,43 +24,43 @@ describe("Testing index.js", () => {
     });
   });
   var testmenuGroup = {
-    menuGroupId:"mgg1",
+    menuGroupId: "mgg1",
     menuGroupCode: "firstt",
-  applicationCode: "RTP",
+    applicationCode: "RTP",
     title: "first menugroup"
   };
   var testmenuGroup1 = {
-    menuGroupId:"mg2",
+    menuGroupId: "mg2",
     menuGroupCode: "second",
     applicationCode: "RTP",
     title: "second menugroup"
   };
-  
+
   describe("Testing saveMenuGroup", () => {
-  beforeEach((done) => {
-    db.deleteAll().then((res) => {
-      done();
-    }).catch((e) => {
-      done(e);
+    beforeEach((done) => {
+      db.deleteAll().then((res) => {
+        done();
+      }).catch((e) => {
+        done(e);
+      });
+    });
+
+    it("should save a menuGroup to database", (done) => {
+      let res = menuGroup.saveMenuGroup(testmenuGroup);
+      expect(res).to.be.eventually.a("object")
+        .to.have.property("menuGroupId")
+        .to.eql(testmenuGroup.menuGroupId)
+        .notify(done);
+    });
+
+    it("should be rejected with Validation Error", (done) => {
+      let res = menuGroup.saveMenuGroup({
+        menuGroupId: 100
+      });
+      expect(res).to.be.rejectedWith("Validation Failed")
+        .notify(done);
     });
   });
-
-  it("should save a menuGroup to database", (done) => {
-    let res = menuGroup.saveMenuGroup(testmenuGroup);
-    expect(res).to.be.eventually.a("object")
-      .to.have.property("menuGroupId")
-      .to.eql(testmenuGroup.menuGroupId)
-      .notify(done);
-  });
-
-  it("should be rejected with Validation Error", (done) => {
-    let res = menuGroup.saveMenuGroup({
-      menuGroupId: 100
-    });
-    expect(res).to.be.rejectedWith("Validation Failed")
-      .notify(done);
-  });
-});
 });
 
 
@@ -72,21 +72,23 @@ describe("Testing index.js", () => {
       done();
     });
   });
-  var testItem1={
-    menuItemId:"1a",
-    menuGroupId:"1g",
-    applicationCode:"flux",
-    menuItemCode:"mia",
-    createdBy:"pavithra",
-    creationDate:new Date().toISOString()
+  var testItem1 = {
+    menuItemId: "1a",
+    menuGroupId: "1g",
+    applicationCode: "flux",
+    menuItemCode: "mia",
+    createdBy: "pavithra",
+    creationDate: new Date().toISOString(),
+    title: "menu item1"
   };
-  var testItem2={
-    menuItemId:"2a",
-    menuGroupId:"2g",
-    applicationCode:"flux",
-    menuItemCode:"mi2",
-    createdBy:"usha",
-    creationDate:new Date().toISOString()
+  var testItem2 = {
+    menuItemId: "2a",
+    menuGroupId: "2g",
+    applicationCode: "flux",
+    menuItemCode: "mi2",
+    createdBy: "usha",
+    creationDate: new Date().toISOString(),
+    title: "menu item1"
   };
   describe("Testing saveMenuItem", () => {
     beforeEach((done) => {
@@ -126,35 +128,35 @@ describe("Testing index.js", () => {
   });
 
   var testMenu = {
-    menuGroupId:"first",
-    menuItemId:"mia",
-    menuGroupItemMapCode:"Docks",
-    applicationCode:"flux",
-    menuGroupItemMapId:"5",
-      createdBy: "SYSTEM",
-      createdDate: new Date().toISOString()
-    };
+    menuGroupId: "first",
+    menuItemId: "mia",
+    menuGroupItemMapCode: "Docks",
+    applicationCode: "flux",
+    menuGroupItemMapId: "5",
+    createdBy: "SYSTEM",
+    createdDate: new Date().toISOString()
+  };
 
-    var testMenu1 = {
-    menuGroupId:"firstt",
-    menuItemId:"mi2",
-    menuGroupItemMapCode:"Dock",
-    applicationCode:"flux",
-    menuGroupItemMapId:"6",
+  var testMenu1 = {
+    menuGroupId: "firstt",
+    menuItemId: "mi2",
+    menuGroupItemMapCode: "Dock",
+    applicationCode: "flux",
+    menuGroupItemMapId: "6",
     createdBy: "SYSTEM 1",
     createdDate: new Date().toISOString()
   };
 
   describe("Testing saveMenuGroupItemMap", () => {
-      beforeEach((done) => {
-        db.deleteAll().then((res) => {
-          done();
-        }).catch((e) => {
-          done(e);
-        });
-  });
+    beforeEach((done) => {
+      db.deleteAll().then((res) => {
+        done();
+      }).catch((e) => {
+        done(e);
+      });
+    });
 
-  it("should save a menuGroupItemMap to database", (done) => {
+    it("should save a menuGroupItemMap to database", (done) => {
       let res = menuGroupItemMap.saveMenuGroupItemMap(testMenu);
       expect(res).to.be.eventually.a("object")
         .to.have.property("menuGroupItemMapCode")
@@ -162,7 +164,7 @@ describe("Testing index.js", () => {
         .notify(done);
     });
 
-  it("should be rejected with Validation Error", (done) => {
+    it("should be rejected with Validation Error", (done) => {
       let res = menuGroupItemMap.saveMenuGroupItemMap({
         menuGroupItemMapId: 1
       });

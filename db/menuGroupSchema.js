@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 var menuGroupSchema = new mongoose.Schema({
   menuGroupId: {
-    type: String,
-  //  unique: true,
+    type: String
   },
   applicationCode: {
     type: String,

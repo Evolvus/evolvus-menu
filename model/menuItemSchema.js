@@ -1,4 +1,3 @@
-
 //JSON schema representation of menuItem  module
 module.exports.schema = {
   "$schema": "http://json-schema.org/draft-06/schema#",
@@ -8,13 +7,13 @@ module.exports.schema = {
     "menuItemId": {
       "type": "string"
     },
-    "menuItemType":{
-      "type":"string",
+    "menuItemType": {
+      "type": "string",
       "minLength": 1,
       "maxLength": 50
     },
-    "applicationCode":{
-      "type":"string",
+    "applicationCode": {
+      "type": "string",
       "minLength": 1,
       "maxLength": 4
     },
@@ -26,25 +25,25 @@ module.exports.schema = {
       "minLength": 1,
       "maxLength": 50
     },
-    "createdBy":{
-      "type":"String"
+    "createdBy": {
+      "type": "String"
     },
-    "creationDate":{
+    "creationDate": {
       "type": "string",
       "format": "date-time"
     },
-    "lastUpdatedDate":{
+    "lastUpdatedDate": {
       "type": "string",
       "format": "date-time"
     },
-    "updatedBy":{
-      "type":"String"
+    "updatedBy": {
+      "type": "String"
     },
-    "enabledFlag" :{
-      "type":"String"
+    "enabledFlag": {
+      "type": "String"
     },
-    "verifiedFlag":{
-      "type":"number"
+    "verifiedFlag": {
+      "type": "number"
     },
     "title": {
       "type": "string",
@@ -60,5 +59,5 @@ module.exports.schema = {
       "type": "number"
     }
   },
-  "required": ["menuGroupId", "menuItemCode",  "applicationCode"]
+  "required": ["menuGroupId", "menuItemCode", "applicationCode"]
 };
