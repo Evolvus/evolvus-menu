@@ -11,7 +11,7 @@ var menuItemDb= require("../db/menuItem");
 
 var menuGroupItemMap = require("../index");
 var menuGroupItemMapDb = require("../db/menuGroupItemMap");
-var MONGO_DB_URL = process.env.MONGODB_URI || "mongodb://10.10.69.204/Platform_Dev";
+var MONGO_DB_URL = process.env.MONGODB_URI || "mongodb://10.10.69.204/TestPlatform_Dev";
 
 chai.use(chaiAsPromised);
 
