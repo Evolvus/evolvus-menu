@@ -4,13 +4,13 @@ const chaiAsPromised = require("chai-as-promised");
 const expect = chai.expect;
 
 var menuGroup = require("../index");
-var db = require("../db/menuGroup");
+var menuGroupDb = require("../db/menuGroup");
 
 var menuItem = require("../index");
-var db = require("../db/menuItem");
+var menuItemDb= require("../db/menuItem");
 
 var menuGroupItemMap = require("../index");
-var db = require("../db/menuGroupItemMap");
+var menuGroupItemMapDb = require("../db/menuGroupItemMap");
 var MONGO_DB_URL = process.env.MONGODB_URI || "mongodb://10.10.69.204/Platform_Dev";
 
 chai.use(chaiAsPromised);
@@ -24,23 +24,21 @@ describe("Testing index.js", () => {
     });
   });
   var testmenuGroup = {
-    menuGroupId: "mgg1",
     tenantId: "name",
-    menuGroupCode: "firstt",
+    menuGroupCode: "first",
     applicationCode: "RTP",
-    title: "first menugroup"
+    title: "first update menugroup"
   };
   var testmenuGroup1 = {
-    menuGroupId: "mg2",
     tenantId: "name",
-    menuGroupCode: "second",
+    menuGroupCode: "first",
     applicationCode: "RTP",
-    title: "second menugroup"
+    title: "first update menugroup"
   };
 
   describe("Testing saveMenuGroup", () => {
     beforeEach((done) => {
-      db.deleteAll().then((res) => {
+      menuGroupDb.deleteAll().then((res) => {
         done();
       }).catch((e) => {
         done(e);
@@ -50,8 +48,8 @@ describe("Testing index.js", () => {
     it("should save a menuGroup to database", (done) => {
       let res = menuGroup.saveMenuGroup(testmenuGroup);
       expect(res).to.be.eventually.a("object")
-        .to.have.property("menuGroupId")
-        .to.eql(testmenuGroup.menuGroupId)
+        .to.have.property("menuGroupCode")
+        .to.eql(testmenuGroup.menuGroupCode)
         .notify(done);
     });
 
@@ -66,7 +64,7 @@ describe("Testing index.js", () => {
 });
 
 
-describe("Testing index.js", () => {
+describe("Testing saveMenuItem index.js", () => {
   before((done) => {
     mongoose.connect(MONGO_DB_URL);
     let connection = mongoose.connection;
@@ -75,28 +73,26 @@ describe("Testing index.js", () => {
     });
   });
   var testItem1 = {
-    menuItemId: "1a",
-    tenantId: "name",
-    menuGroupId: "1g",
+    tenantId:"name",
+    menuItemType: "quicklink",
     applicationCode: "flux",
-    menuItemCode: "mia",
-    createdBy: "pavithra",
+    menuItemCode: "mi3",
+    createdBy: "pavithrat",
     creationDate: new Date().toISOString(),
-    title: "menu item1"
+    title: "menu item"
   };
   var testItem2 = {
-    menuItemId: "2a",
-    tenantId: "name",
-    menuGroupId: "2g",
+    tenantId:"name",
+    menuItemType: "quicklink",
     applicationCode: "flux",
-    menuItemCode: "mi2",
-    createdBy: "usha",
+    menuItemCode: "mi3",
+    createdBy: "pavithrat",
     creationDate: new Date().toISOString(),
-    title: "menu item1"
+    title: "menu item"
   };
   describe("Testing saveMenuItem", () => {
     beforeEach((done) => {
-      db.deleteAll().then((res) => {
+      menuItemDb.deleteAll().then((res) => {
         done();
       }).catch((e) => {
         done(e);
@@ -106,8 +102,8 @@ describe("Testing index.js", () => {
     it("should save a menuItem to database", (done) => {
       let res = menuItem.saveMenuItem(testItem1);
       expect(res).to.be.eventually.a("object")
-        .to.have.property("menuItemId")
-        .to.eql(testItem1.menuItemId)
+        .to.have.property("menuItemCode")
+        .to.eql(testItem1.menuItemCode)
         .notify(done);
     });
 
@@ -122,7 +118,7 @@ describe("Testing index.js", () => {
 });
 
 
-describe("Testing index.js", () => {
+describe("Testing menuGroupItemMap index.js", () => {
   before((done) => {
     mongoose.connect(MONGO_DB_URL);
     let connection = mongoose.connection;
@@ -132,30 +128,28 @@ describe("Testing index.js", () => {
   });
 
   var testMenu = {
+    tenantId:"name",
+    menuGroupItemMapCode: "mgimc",
     menuGroupId: "first",
-    tenantId: "name",
     menuItemId: "mia",
-    menuGroupItemMapCode: "Docks",
+    createdBy: "vigneshp",
     applicationCode: "flux",
-    menuGroupItemMapId: "5",
-    createdBy: "SYSTEM",
-    createdDate: new Date().toISOString()
+    createdDate: Date.now()
   };
 
   var testMenu1 = {
-    menuGroupId: "firstt",
-    tenantId: "name",
-    menuItemId: "mi2",
-    menuGroupItemMapCode: "Dock",
+    tenantId:"name",
+    menuGroupItemMapCode: "mgimc",
+    menuGroupId: "first",
+    menuItemId: "mia",
+    createdBy: "vigneshp",
     applicationCode: "flux",
-    menuGroupItemMapId: "6",
-    createdBy: "SYSTEM 1",
-    createdDate: new Date().toISOString()
+    createdDate: Date.now()
   };
 
   describe("Testing saveMenuGroupItemMap", () => {
     beforeEach((done) => {
-      db.deleteAll().then((res) => {
+      menuGroupItemMapDb.deleteAll().then((res) => {
         done();
       }).catch((e) => {
         done(e);

@@ -1,22 +1,15 @@
 const mongoose = require('mongoose');
 
 var menuItemSchema = new mongoose.Schema({
-  menuItemId: {
-    type: String,
-    required: true,
-  },
   tenantId: {
     type: String,
     required: true,
     minLength: 1,
     maxLength: 64
   },
-  menuGroupId: {
-    type: String,
-    required: true
-  },
   menuItemType: {
     type: String,
+    required: true,
     minLength: 1,
     maxLength: 50
   },

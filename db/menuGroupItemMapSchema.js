@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 var menuGroupItemMapSchema = new mongoose.Schema({
-  menuGroupItemMapId: {
-    type: String,
-    required: true
-  },
   tenantId: {
     type: String,
     required: true,
@@ -13,7 +9,7 @@ var menuGroupItemMapSchema = new mongoose.Schema({
   applicationCode: {
     type: String,
     minlength: 1,
-    maxlength: 4,
+    maxlength: 15,
     required: true
   },
   verifiedFlag: {

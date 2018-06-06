@@ -4,9 +4,6 @@ module.exports.schema = {
   "type": "object",
 
   "properties": {
-    "menuGroupId": {
-      "type": "string"
-    },
     "tenantId": {
           "type": "string",
           "minLength": 1,
@@ -15,7 +12,7 @@ module.exports.schema = {
     "applicationCode": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 4
+      "maxLength": 15
     },
     "createdBy": {
       "type": "string"

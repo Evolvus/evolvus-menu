@@ -3,9 +3,6 @@ module.exports.schema = {
   "title": "menuGroupItemMapModel",
   "type": "object",
   "properties": {
-    "menuGroupItemMapId": {
-      "type": "string"
-    },
     "tenantId": {
           "type": "string",
           "minLength": 1,
@@ -14,7 +11,7 @@ module.exports.schema = {
     "applicationCode": {
       "type": "string",
       "minlength": 1,
-      "maxlength": 4
+      "maxlength": 15
     },
     "verifiedFlag": {
       "type": "number"

@@ -18,14 +18,12 @@ describe("menuGroup db testing", () => {
     });
   });
   var testmenuGroup = {
-    "menuGroupId": "mg1",
     "tenantId":"name",
     "menuGroupCode": "first",
     "applicationCode": "RTP",
     "title": "first menugroup"
   };
   var testmenuGroup1 = {
-    "menuGroupId": "mg2",
     "tenantId":"name",
     "menuGroupCode": "second",
     "applicationCode": "RTP",
@@ -144,7 +142,6 @@ describe("menuGroup db testing", () => {
     //add 2 menuGroup
     let id;
     let update = {
-      menuGroupId: "mg3",
       tenantId: "name",
       menuGroupCode: "first",
       applicationCode: "RTP",

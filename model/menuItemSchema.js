@@ -4,13 +4,10 @@ module.exports.schema = {
   "title": "MenuItemModel",
   "type": "object",
   "properties": {
-    "menuItemId": {
-      "type": "string"
-    },
     "tenantId": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 64
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
     },
     "menuItemType": {
       "type": "string",
@@ -20,10 +17,7 @@ module.exports.schema = {
     "applicationCode": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 4
-    },
-    "menuGroupId": {
-      "type": "string"
+      "maxLength": 15
     },
     "menuItemCode": {
       "type": "string",
@@ -64,5 +58,5 @@ module.exports.schema = {
       "type": "number"
     }
   },
-  "required": ["menuGroupId", "menuItemCode", "applicationCode","tenantId"]
+  "required": ["menuItemType", "menuItemCode", "applicationCode","tenantId"]
 };

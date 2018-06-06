@@ -22,8 +22,6 @@ describe("MenuGroupItemMap db testing", () => {
     "menuItemId": "46",
     "menuGroupItemMapCode": "110",
     "applicationCode": "flux",
-    "menuGroupItemMapId": "1256",
-
     "createdBy": "vigneshp",
     "createdDate": Date.now()
   };
@@ -33,7 +31,6 @@ describe("MenuGroupItemMap db testing", () => {
     "menuItemId": "4",
     "menuGroupItemMapCode": "10",
     "applicationCode": "flux",
-    "menuGroupItemMapId": "12560",
     "createdBy": "vijaykumarR",
     "createdDate": Date.now()
   };
@@ -150,7 +147,6 @@ describe("MenuGroupItemMap db testing", () => {
     //add 2 menuGroupItemMap
     let id;
     let update = {
-      menuGroupItemMapId: "wer",
       tenantId:"name",
       menuGroupItemMapCode: "mgimc",
       menuGroupId: "first",

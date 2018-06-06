@@ -17,9 +17,8 @@ describe("menuItem db testing", () => {
   });
 
   var testItem1 = {
-    "menuItemId": "1a",
     "tenantId":"name",
-    "menuGroupId": "1g",
+    "menuItemType": "quicklink",
     "applicationCode": "flux",
     "menuItemCode": "mi1",
     "createdBy": "pavithra",
@@ -27,9 +26,8 @@ describe("menuItem db testing", () => {
     "title": "menu item1"
   };
   var testItem2 = {
-    "menuItemId": "2a",
     "tenantId":"name",
-    "menuGroupId": "2g",
+    "menuItemType": "quicklink",
     "applicationCode": "flux",
     "menuItemCode": "mi2",
     "createdBy": "usha",
@@ -47,8 +45,8 @@ describe("menuItem db testing", () => {
 
     it("should  save a menuItem into database", (done) => {
       let res = menuItem.saveMenuItem(testItem1);
-      expect(res).to.be.eventually.have.property("menuItemId")
-        .to.equal(testItem1.menuItemId)
+      expect(res).to.be.eventually.have.property("menuItemCode")
+        .to.equal(testItem1.menuItemCode)
         .notify(done);
     });
 
@@ -127,13 +125,12 @@ describe("menuItem db testing", () => {
     //add 2 menuItem
     let id;
     let update = {
-      menuItemId: "3a",
       tenantId:"name",
-      menuGroupId: "2g",
+      menuItemType: "quicklink",
       applicationCode: "flux",
       menuItemCode: "mi3",
       createdBy: "pavithrat",
-      creationDate: Date.now(),
+      creationDate: new Date().toISOString(),
       title: "menu item"
     };
     beforeEach((done) => {

@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 var menuGroupSchema = new mongoose.Schema({
-  menuGroupId: {
-    type: String
-  },
   tenantId: {
     type: String,
     required: true,
@@ -13,7 +10,7 @@ var menuGroupSchema = new mongoose.Schema({
   applicationCode: {
     type: String,
     minLength: 1,
-    maxLength: 4
+    maxLength: 15
   },
   createdBy: {
     type: String,
