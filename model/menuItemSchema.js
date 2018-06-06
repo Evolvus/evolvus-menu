@@ -6,10 +6,20 @@ module.exports.schema = {
   "type": "object",
   "properties": {
     "menuItemId": {
-      "type": "number"
+      "type": "string"
+    },
+    "menuItemType":{
+      "type":"string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "applicationCode":{
+      "type":"string",
+      "minLength": 1,
+      "maxLength": 4
     },
     "menuGroupId": {
-      "type": "integer"
+      "type": "string"
     },
     "menuItemCode": {
       "type": "string",
@@ -33,6 +43,9 @@ module.exports.schema = {
     "enabledFlag" :{
       "type":"String"
     },
+    "verifiedFlag":{
+      "type":"number"
+    },
     "title": {
       "type": "string",
       "minLength": 1,
@@ -47,5 +60,5 @@ module.exports.schema = {
       "type": "number"
     }
   },
-  "required": ["menuGroupId", "menuItemCode", "title"]
+  "required": ["menuGroupId", "menuItemCode",  "applicationCode"]
 };

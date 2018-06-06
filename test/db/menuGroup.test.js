@@ -5,7 +5,7 @@ const chaiAsPromised = require("chai-as-promised");
 const expect = chai.expect;
 
 var menuGroup = require("../../db/menuGroup");
-var MONGO_DB_URL = process.env.MONGO_DB_URL || "mongodb://localhost/testMenuGroup";
+var MONGO_DB_URL = process.env.MONGO_DB_URL || "mongodb://10.10.69.204/Platform_Dev";
 
 chai.use(chaiAsPromised);
 
@@ -18,18 +18,18 @@ describe("menuGroup db testing", () => {
     });
   });
   var testmenuGroup = {
-    "menuGroupId": 1,
+    "menuGroupId":"mg1",
     "menuGroupCode": "first",
-    "menuGroupType": "xxx",
+    "applicationCode": "RTP",
     "title": "first menugroup"
   };
   var testmenuGroup1 = {
-    "menuGroupId": 2,
+    "menuGroupId":"mg2",
     "menuGroupCode": "second",
-    "menuGroupType": "yy",
+    "applicationCode": "RTP",
     "title": "second menugroup"
   };
-  describe("testing savemenuGroup", () => {
+  describe("testing saveMenuGroup", () => {
     beforeEach((done) => {
       menuGroup.deleteAll().then((res) => {
         done();
@@ -39,17 +39,17 @@ describe("menuGroup db testing", () => {
     });
 
     it("should  save a menuGroup into database", (done) => {
-      let res = menuGroup.savemenuGroup(testmenuGroup);
-      expect(res).to.be.eventually.have.property("menuGroupId")
-        .to.equal(testmenuGroup.menuGroupId)
+      let res = menuGroup.saveMenuGroup(testmenuGroup);
+      expect(res).to.be.eventually.have.property("menuGroupCode")
+        .to.equal(testmenuGroup.menuGroupCode)
         .notify(done);
     });
 
     it("should not  save a invalid menuGroup into database", (done) => {
-      let res = menuGroup.savemenuGroup({
+      let res = menuGroup.saveMenuGroup({
         menuGroupId: 1
       });
-      expect(res).to.be.rejectedWith("menuGroup validation failed")
+      expect(res).to.be.rejectedWith("MenuGroup validation failed")
         .notify(done);
     });
   });
@@ -57,7 +57,7 @@ describe("menuGroup db testing", () => {
   describe("testing FindByCode", () => {
     beforeEach((done) => {
       menuGroup.deleteAll().then(() => {
-        menuGroup.savemenuGroup(testmenuGroup).then((res) => {
+        menuGroup.saveMenuGroup(testmenuGroup).then((res) => {
           done();
         });
       });
@@ -67,7 +67,7 @@ describe("menuGroup db testing", () => {
       let res = menuGroup.FindByCode("Dock");
       expect(res).to.be.eventually.be.a("object");
       expect(res).to.be.eventually.have.property("menuGroupCode")
-        .to.deep.equal(testmenuGroup.menuGroupCode);
+        .to.deep.equal(testmenuGroup1.menuGroupCode);
       done();
     });
 
@@ -87,9 +87,9 @@ describe("menuGroup db testing", () => {
     beforeEach((done) => {
       menuGroup.deleteAll()
         .then((res) => {
-          menuGroup.savemenuGroup(testmenuGroup)
+          menuGroup.saveMenuGroup(testmenuGroup)
             .then((res) => {
-              menuGroup.savemenuGroup(testmenuGroup1)
+              menuGroup.saveMenuGroup(testmenuGroup1)
                 .then((res) => {
                   done();
                 });
@@ -105,8 +105,8 @@ describe("menuGroup db testing", () => {
             .to.be.a('array');
           expect(docs.length)
             .to.equal(2);
-          expect(docs[0].menuGroupId)
-            .to.equal(testmenuGroup.menuGroupId);
+          expect(docs[0].menuGroupCode)
+            .to.equal(testmenuGroup.menuGroupCode);
           done();
         });
     });
@@ -123,7 +123,7 @@ describe("menuGroup db testing", () => {
     });
 
     it('should return empty array', (done) => {
-      let res = menuGroup.FindAllmanuGroup();
+      let res = menuGroup.FindAllmenuGroup();
       expect(res)
         .to.be.fulfilled.then((docs) => {
           expect(docs)
@@ -142,16 +142,16 @@ describe("menuGroup db testing", () => {
     //add 2 menuGroup
     let id;
     let update = {
-      "menuGroupId": 12,
-      "menuGroupCode": "first",
-      "menuGroupType": "xxx",
-      "title": "first update menugroup"
+      menuGroupId:"mg3",
+      menuGroupCode: "first",
+      applicationCode:"RTP",
+      title: "first update menugroup"
     };
     beforeEach((done) => {
       menuGroup.deleteAll().then((res) => {
-        menuGroup.savemenuGroup(testmenuGroup).then((res) => {
+        menuGroup.saveMenuGroup(testmenuGroup).then((res) => {
           id = res._id;
-          menuGroup.savemenuGroup(testmenuGroup1).then((res) => {
+          menuGroup.saveMenuGroup(testmenuGroup1).then((res) => {
             done();
           });
         });
@@ -163,15 +163,15 @@ describe("menuGroup db testing", () => {
         var res = menuGroup.FindAllmenuGroup().then((menu) => {
           expect(menu).to.be.a('array');
           expect(menu.length).to.eql(2);
-          expect(menu[0].menuGroupCode).to.eql(update.menuGroupCode);
+          expect(menu[0].menuGroupId).to.eql(update.menuGroupId);
           done();
         });
       });
     });
 
     it("should be rejected when there is no menuGroup matching the parameter code", (done) => {
-      var res = menuGroup.updatemenuGroup("sample", update);
-      expect(res).to.be.rejectedWith(`There is no such Application with code:sample`)
+      var res = menuGroup.updatemenuGroup("5b0fc57886ab1979ed77891b", update);
+      expect(res).to.be.rejectedWith(`There is no such MenuGroup with id:5b0fc57886ab1979ed77891b`)
         .notify(done);
     });
 

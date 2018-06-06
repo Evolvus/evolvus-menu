@@ -5,7 +5,12 @@ module.exports.schema = {
 
   "properties": {
     "menuGroupId": {
-      "type": "number"
+      "type": "string"
+    },
+    "applicationCode": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4
     },
     "createdBy": {
       "type": "string"
@@ -46,8 +51,11 @@ module.exports.schema = {
       "type": "string",
       "minLength": 1,
       "maxLength": 50
+    },
+    "verifiedFlag":{
+      "type": "number"
     }
 
 },
-  "required": ["menuGroupCode", "menuGroupType", "title"]
-}
+  "required": ["menuGroupCode", "applicationCode", "title"]
+};

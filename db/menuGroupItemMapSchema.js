@@ -1,27 +1,42 @@
 const mongoose=require('mongoose');
 var menuGroupItemMapSchema=new mongoose.Schema({
     menuGroupItemMapId: {
-      type: Number,
-      required:true,
-      validate:{
-        validator:Number.isInteger,
-        message:'{VALUE} is not an Integer'
-      }
+      type: String,
+      required:true
+      // validate:{
+      //   validator:Number.isInteger,
+      //   message:'{VALUE} is not an Integer'
+      // }
+    },
+    applicationCode:{
+      type:String,
+      minlength:1,
+      maxlength:4,
+      required:true
+    },
+    verifiedFlag:{
+      type:Number
     },
     menuGroupId: {
-      type: Number
+      type: String,
+      required:true
     },
     menuItemId: {
-      type:Number
+      type:String,
+      required:true
     },
     menuItemOrder: {
       type: Number
     },
      menuGroupItemMapCode:{
-      type:Number
+      type:String,
+      minlength:1,
+      unique: true,
+      maxlength:50,
+      required:true
     },
     createdBy:{
-      type:String
+      type:String,
       minlength:1,
       maxlength:100
     },
@@ -32,10 +47,9 @@ var menuGroupItemMapSchema=new mongoose.Schema({
       type:Date
     },
     updatedBy:{
-      type:String
+      type:String,
       minlength:1,
-      maxlength:100,
-
+      maxlength:100
     },
     langCode:{
       type:String,

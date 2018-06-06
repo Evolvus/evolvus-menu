@@ -2,20 +2,24 @@ const mongoose = require('mongoose');
 
 var menuItemSchema = new mongoose.Schema({
   menuItemId: {
-    type: Number,
+    type: String,
     required: true,
-    validate: {
-      validator: Number.isInteger,
-      message: '{VALUE} is not an integer value'
-    }
   },
   menuGroupId: {
-    type: Number,
+    type:String,
     required: true,
-    validate: {
-      validator: Number.isInteger,
-      message: '{VALUE} is not an integer value'
-    }
+
+  },
+  menuItemType:{
+    type:String,
+    minLength: 1,
+    maxLength: 50
+  },
+  applicationCode:{
+    type:String,
+    minLength: 1,
+    maxLength: 4,
+    required: true
   },
   menuItemCode: {
     type: String,
@@ -31,24 +35,24 @@ var menuItemSchema = new mongoose.Schema({
   },
   creationDate:{
     type: Date,
-    required: true
+    //required: true
   },
   lastUpdatedDate:{
     type: Date,
-    required: true
+    //required: true
   },
   updatedBy:{
     type: String,
-    required: true,
+    //required: true,
     minlength: 1
   },
   enabledFlag :{
     type: String,
-    required: true
+    //required: true
   },
   title: {
     type: String,
-    required: true,
+    //required: true,
     minlength: 1,
   },
   icon: {

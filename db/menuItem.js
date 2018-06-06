@@ -1,6 +1,6 @@
-const debug = require("debug")("evolvus-menuGroup:db:menuItem");
+const debug = require("debug")("evolvus-menuItem:db:menuItem");
 const mongoose = require("mongoose");
-const applicationSchema = require('./menuItemSchema');
+const menuItemSchema = require('./menuItemSchema');
 const ObjectId = require("mongodb").ObjectID;
 
 //Creates Menu Item collection in database
@@ -61,7 +61,7 @@ module.exports.updateMenuItem = (id, update) => {
           reject(`There is no such MenuItem with id:${id}`);
         }
       }).catch((e) => {
-        debug(`exception on findById ${e}`);
+       debug(`exception on findById ${e}`);
         reject(e.message);
       });
     } catch (e) {

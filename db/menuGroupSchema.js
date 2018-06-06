@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 var menuGroupSchema = new mongoose.Schema({
   menuGroupId: {
-    type: Number,
-    unique: true,
-    validate: {
-      validator: Number.isInteger,
-      message: '{VALUE} is not an integer value'
-    }
+    type: String,
+  //  unique: true,
+  },
+  applicationCode: {
+    type: String,
+    minLength: 1,
+    maxLength: 4
   },
   createdBy: {
     type: String,
@@ -39,7 +40,6 @@ var menuGroupSchema = new mongoose.Schema({
   },
   menuGroupType: {
     type: String,
-    required: true,
     minLength: 1,
     maxLength: 50
   },
@@ -53,6 +53,9 @@ var menuGroupSchema = new mongoose.Schema({
     type: String,
     minLength: 1,
     maxLength: 50
+  },
+  verifiedFlag: {
+    type: Number
   }
 });
 module.exports = menuGroupSchema;

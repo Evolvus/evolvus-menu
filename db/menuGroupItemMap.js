@@ -1,21 +1,21 @@
-const debug = require("debug")("evolvus-menuGroup:db:menuGroup");
+const debug = require("debug")("evolvus-menuGroupItemMap:db:menuGroupItemMap");
 const mongoose = require("mongoose");
-const menuGroupSchema = require('./menuGroupSchema');
+const menuGroupItemMapSchema = require('./menuGroupItemMapSchema');
 const ObjectId = require("mongodb").ObjectID;
+//Creates MenuGroupItemMap collection in database
+var MenuGroupItemMap = mongoose.model("MenuGroupItemMap", menuGroupItemMapSchema);
 
-//Creates menuGroup collection in database
-var MenuGroup = mongoose.model("MenuGroup", menuGroupSchema);
+// Stores the MenuGroupItemMap object into database
+module.exports.saveMenuGroupItemMap= (menuGroupItemMapObj) => {
 
-
-// Stores the menuGroup object into database
-module.exports.saveMenuGroup = (menuGroupObj) => {
   return new Promise((resolve, reject) => {
     try {
-      var menuGroup = new MenuGroup(menuGroupObj);
-      menuGroup.save().then((menu) => {
-        debug("saved successfully", menu.menuGroupCode);
+      var menuGroupItemMap = new MenuGroupItemMap(menuGroupItemMapObj);
+        menuGroupItemMap.save().then((menu) => {
+        debug("saved successfully", menu.menuGroupItemMapCode);
         resolve(menu);
       }, (err) => {
+
         debug(`failed to save with an error ${err}`);
         reject(err);
       }).catch((e) => {
@@ -23,41 +23,46 @@ module.exports.saveMenuGroup = (menuGroupObj) => {
         reject(e);
       });
     } catch (e) {
+
       debug(`caught exception ${e}`);
       reject(e);
     }
   });
 };
 
-//Finds one menuGroup by its code and updates it with new values
-module.exports.updatemenuGroup = (id, update) => {
+//Finds one MenuGroupItemMap by its code and updates it with new values
+module.exports.updateMenuGroupItemMap = (id, update) => {
   return new Promise((resolve, reject) => {
     try {
-      MenuGroup.findById({
+      MenuGroupItemMap.findById({
         _id: new ObjectId(id)
       }).then((menu) => {
         if (menu) {
-          var updateObject = new MenuGroup(update);
+
+          var updateObject = new MenuGroupItemMap(update);
           var errors = updateObject.validateSync();
-          if (errors != null) {
-         throw new Error(`IllegalArgumentException: ${errors.message}`);
+          if (errors != null)
+         {
+
+           throw new Error(`IllegalArgumentException${errors.message}`);
+
           }
-          MenuGroup.update({
-            _id: id
+          MenuGroupItemMap.update({
+        _id: id
           }, {
             $set: update
-          }).then((response) => {
+            }).then((response) => {
             if (response.nModified === 0) {
               debug("failed to update");
               reject("Sorry! this data to be updated is invalid or you are trying to update with the same values");
-            } else {
+            } else{
               debug("updated successfully");
               resolve(response);
             }
           });
         } else {
-          debug(`menuGroup not found with id, ${id}`);
-          reject(`There is no such MenuGroup with id:${id}`);
+          debug(`MenuGroupItemMap not found with id, ${id}`);
+          reject(`There is no such MenuGroupItemMap with id:${id}`);
         }
       }).catch((e) => {
         debug(`exception on findById ${e}`);
@@ -70,25 +75,26 @@ module.exports.updatemenuGroup = (id, update) => {
   });
 };
 
-// Finds the application object for the code parameter from the application collection
+// Finds the MenuGroupItemMap object for the code parameter from the MenuGroupItemMap collection
 // If there is no object matching the code, return empty object i.e. {}
 // Should return a Promise
 module.exports.FindByCode = (codevalue) => {
+
   return new Promise((resolve, reject) => {
     try {
-      menuGroup.findOne({
-        menuGroupCode: codevalue
+      MenuGroupItemMap.findOne({
+           menuGroupItemMapCode: codevalue
       }).then((menu) => {
         if (menu) {
-          debug(`menuGroup found ${menu.menuGroupId}`);
+          debug(`MenuGroupItemMap found ${menu.menuGroupItemMapId}`);
           resolve(menu);
         } else {
           // return empty object in place of null
-          debug("menuGroup not found");
+          debug("MenuGroupItemMap not found");
           resolve({});
         }
       }).catch((e) => {
-        debug(`failed to find the menuGroup with error ${e}`);
+        debug(`failed to find the MenuGroupItemMap with error ${e}`);
         reject(e);
       });
     } catch (e) {
@@ -99,13 +105,13 @@ module.exports.FindByCode = (codevalue) => {
 };
 
 
-//Returns all the application entities
-module.exports.FindAllmenuGroup = () => {
-  return MenuGroup.find({});
+//Returns all the MenuGroupItemMap entities
+module.exports.FindAllMenuGroupItemMap = () => {
+  return MenuGroupItemMap.find({});
 };
-
+//
 //Deletes all the records from the database
 //Used only for testing
 module.exports.deleteAll = () => {
-  return MenuGroup.remove({});
-};
+  return MenuGroupItemMap.remove({});
+ };

@@ -1,26 +1,26 @@
 {
-  "name": "evolvus-menugroup",
+  "name": "evolvus-menu",
   "version": "1.0.0",
-  "description": "",
+  "description": "It includes all menu groups, menu items and their mappings",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Evolvus/evolvus-menuGroup.git"
+    "url": "git+https://github.com/Evolvus/evolvus-menu.git"
   },
   "keywords": [
     "evolvus",
-    "menuGroup",
+    "menu",
     "platform"
   ],
   "author": "kamalarani",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Evolvus/evolvus-menuGroup/issues"
+    "url": "https://github.com/Evolvus/evolvus-menu/issues"
   },
-  "homepage": "https://github.com/Evolvus/evolvus-menuGroup#readme",
+  "homepage": "https://github.com/Evolvus/evolvus-menu#readme",
   "dependencies": {
     "debug": "^3.1.0",
     "jsonschema": "^1.2.4",

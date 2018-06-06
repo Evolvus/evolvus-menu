@@ -1,28 +1,33 @@
-module.exports.schema =
+module.exports.schema ={
   "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "menuGroupItemMapModel",
   "type": "object",
   "properties": {
-    "menuGroupItemMapId": {
-    "type": "number",
-    "required":true,
-    "validate":{
-      "validator":Number.isInteger,
-      "message":'{VALUE} is not an Integer'
-    }
+    "menuGroupItemMapId":{
+    "type": "string"
+  },
+  "applicationCode":{
+    "type":"string",
+    "minlength":1,
+    "maxlength":4
+  },
+  "verifiedFlag":{
+    "type":"number"
   },
     "menuGroupId": {
-      "type": "number"
+      "type": "string"
     },
     "menuItemId": {
-      "type": "number"
+      "type": "string"
     },
     "menuItemOrder": {
       "type": "number"
     },
-    " menuGroupItemMapCode":{
-      "type":"number"
-    },
+    "menuGroupItemMapCode":{
+      "type":"string",
+    "minlength":1,
+    "maxlength":50
+      },
     "createdBy":{
       "minlength":1,
       "maxlength":100
@@ -49,5 +54,5 @@ module.exports.schema =
       "type":"string"
     }
   },
-  "required": ["menuGroupItemMapId", "menuGroupId", "menuItemId"]
+  "required": ["menuGroupItemMapCode", "menuGroupId", "menuItemId","applicationCode"]
 };
