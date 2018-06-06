@@ -25,12 +25,14 @@ describe("Testing index.js", () => {
   });
   var testmenuGroup = {
     menuGroupId: "mgg1",
+    tenantId: "name",
     menuGroupCode: "firstt",
     applicationCode: "RTP",
     title: "first menugroup"
   };
   var testmenuGroup1 = {
     menuGroupId: "mg2",
+    tenantId: "name",
     menuGroupCode: "second",
     applicationCode: "RTP",
     title: "second menugroup"
@@ -74,6 +76,7 @@ describe("Testing index.js", () => {
   });
   var testItem1 = {
     menuItemId: "1a",
+    tenantId: "name",
     menuGroupId: "1g",
     applicationCode: "flux",
     menuItemCode: "mia",
@@ -83,6 +86,7 @@ describe("Testing index.js", () => {
   };
   var testItem2 = {
     menuItemId: "2a",
+    tenantId: "name",
     menuGroupId: "2g",
     applicationCode: "flux",
     menuItemCode: "mi2",
@@ -129,6 +133,7 @@ describe("Testing index.js", () => {
 
   var testMenu = {
     menuGroupId: "first",
+    tenantId: "name",
     menuItemId: "mia",
     menuGroupItemMapCode: "Docks",
     applicationCode: "flux",
@@ -139,6 +144,7 @@ describe("Testing index.js", () => {
 
   var testMenu1 = {
     menuGroupId: "firstt",
+    tenantId: "name",
     menuItemId: "mi2",
     menuGroupItemMapCode: "Dock",
     applicationCode: "flux",

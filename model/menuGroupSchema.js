@@ -7,6 +7,11 @@ module.exports.schema = {
     "menuGroupId": {
       "type": "string"
     },
+    "tenantId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+    },
     "applicationCode": {
       "type": "string",
       "minLength": 1,
@@ -57,5 +62,5 @@ module.exports.schema = {
     }
 
   },
-  "required": ["menuGroupCode", "applicationCode", "title"]
+  "required": ["menuGroupCode", "applicationCode", "title","tenantId"]
 };

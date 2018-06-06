@@ -4,6 +4,12 @@ var menuGroupSchema = new mongoose.Schema({
   menuGroupId: {
     type: String
   },
+  tenantId: {
+    type: String,
+    required: true,
+    minLength: 1,
+    maxLength: 64
+  },
   applicationCode: {
     type: String,
     minLength: 1,

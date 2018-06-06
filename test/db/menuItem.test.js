@@ -18,6 +18,7 @@ describe("menuItem db testing", () => {
 
   var testItem1 = {
     "menuItemId": "1a",
+    "tenantId":"name",
     "menuGroupId": "1g",
     "applicationCode": "flux",
     "menuItemCode": "mi1",
@@ -27,6 +28,7 @@ describe("menuItem db testing", () => {
   };
   var testItem2 = {
     "menuItemId": "2a",
+    "tenantId":"name",
     "menuGroupId": "2g",
     "applicationCode": "flux",
     "menuItemCode": "mi2",
@@ -126,6 +128,7 @@ describe("menuItem db testing", () => {
     let id;
     let update = {
       menuItemId: "3a",
+      tenantId:"name",
       menuGroupId: "2g",
       applicationCode: "flux",
       menuItemCode: "mi3",
