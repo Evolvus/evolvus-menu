@@ -45,7 +45,7 @@ var menuGroupSchema = new mongoose.Schema({
     minLength: 1,
     maxLength: 50
   },
-  title: {
+  mgtitle: {
     type: String,
     required: true,
     minLength: 1,

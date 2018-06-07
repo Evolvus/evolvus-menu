@@ -18,7 +18,7 @@ describe("MenuGroupItemMap db testing", () => {
   });
   var testMenu = {
     "menuGroupId": "12",
-    "tenantId":"name",
+    "tenantId": "name",
     "menuItemId": "46",
     "menuGroupItemMapCode": "110",
     "applicationCode": "flux",
@@ -27,7 +27,7 @@ describe("MenuGroupItemMap db testing", () => {
   };
   var testMenu1 = {
     "menuGroupId": "1",
-    "tenantId":"name",
+    "tenantId": "name",
     "menuItemId": "4",
     "menuGroupItemMapCode": "10",
     "applicationCode": "flux",
@@ -147,7 +147,7 @@ describe("MenuGroupItemMap db testing", () => {
     //add 2 menuGroupItemMap
     let id;
     let update = {
-      tenantId:"name",
+      tenantId: "name",
       menuGroupItemMapCode: "mgimc",
       menuGroupId: "first",
       menuItemId: "mia",

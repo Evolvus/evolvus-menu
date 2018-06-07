@@ -18,16 +18,16 @@ describe("menuGroup db testing", () => {
     });
   });
   var testmenuGroup = {
-    "tenantId":"name",
+    "tenantId": "name",
     "menuGroupCode": "first",
     "applicationCode": "RTP",
-    "title": "first menugroup"
+    "mgtitle": "first menugroup"
   };
   var testmenuGroup1 = {
-    "tenantId":"name",
+    "tenantId": "name",
     "menuGroupCode": "second",
     "applicationCode": "RTP",
-    "title": "second menugroup"
+    "mgtitle": "second menugroup"
   };
   describe("testing saveMenuGroup", () => {
     beforeEach((done) => {
@@ -145,7 +145,7 @@ describe("menuGroup db testing", () => {
       tenantId: "name",
       menuGroupCode: "first",
       applicationCode: "RTP",
-      title: "first update menugroup"
+      mgtitle: "first update menugroup"
     };
     beforeEach((done) => {
       menuGroup.deleteAll().then((res) => {

@@ -17,7 +17,7 @@ describe("menuItem db testing", () => {
   });
 
   var testItem1 = {
-    "tenantId":"name",
+    "tenantId": "name",
     "menuItemType": "quicklink",
     "applicationCode": "flux",
     "menuItemCode": "mi1",
@@ -26,7 +26,7 @@ describe("menuItem db testing", () => {
     "title": "menu item1"
   };
   var testItem2 = {
-    "tenantId":"name",
+    "tenantId": "name",
     "menuItemType": "quicklink",
     "applicationCode": "flux",
     "menuItemCode": "mi2",
@@ -125,7 +125,7 @@ describe("menuItem db testing", () => {
     //add 2 menuItem
     let id;
     let update = {
-      tenantId:"name",
+      tenantId: "name",
       menuItemType: "quicklink",
       applicationCode: "flux",
       menuItemCode: "mi3",

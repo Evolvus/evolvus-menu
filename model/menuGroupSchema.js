@@ -5,9 +5,9 @@ module.exports.schema = {
 
   "properties": {
     "tenantId": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 64
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
     },
     "applicationCode": {
       "type": "string",
@@ -44,7 +44,7 @@ module.exports.schema = {
       "minLength": 1,
       "maxLength": 50
     },
-    "title": {
+    "mgtitle": {
       "type": "string",
       "minLength": 1,
       "maxLength": 50
@@ -59,5 +59,5 @@ module.exports.schema = {
     }
 
   },
-  "required": ["menuGroupCode", "applicationCode", "title","tenantId"]
+  "required": ["menuGroupCode", "applicationCode", "mgtitle", "tenantId"]
 };

@@ -7,7 +7,7 @@ var menuGroup = require("../index");
 var menuGroupDb = require("../db/menuGroup");
 
 var menuItem = require("../index");
-var menuItemDb= require("../db/menuItem");
+var menuItemDb = require("../db/menuItem");
 
 var menuGroupItemMap = require("../index");
 var menuGroupItemMapDb = require("../db/menuGroupItemMap");
@@ -24,16 +24,17 @@ describe("Testing index.js", () => {
     });
   });
   var testmenuGroup = {
-    tenantId: "name",
-    menuGroupCode: "first",
-    applicationCode: "RTP",
-    title: "first update menugroup"
+    "tenantId": "IVL",
+    "menuGroupCode": "chd",
+    "mgtitle": "Mandate",
+    "menuGroupType": "global",
+    "applicationCode": "HODE"
   };
   var testmenuGroup1 = {
     tenantId: "name",
     menuGroupCode: "first",
     applicationCode: "RTP",
-    title: "first update menugroup"
+    mgtitle: "first update menugroup"
   };
 
   describe("Testing saveMenuGroup", () => {
@@ -61,115 +62,116 @@ describe("Testing index.js", () => {
         .notify(done);
     });
   });
-});
 
 
-describe("Testing saveMenuItem index.js", () => {
-  before((done) => {
-    mongoose.connect(MONGO_DB_URL);
-    let connection = mongoose.connection;
-    connection.once("open", () => {
-      done();
-    });
-  });
-  var testItem1 = {
-    tenantId:"name",
-    menuItemType: "quicklink",
-    applicationCode: "flux",
-    menuItemCode: "mi3",
-    createdBy: "pavithrat",
-    creationDate: new Date().toISOString(),
-    title: "menu item"
-  };
-  var testItem2 = {
-    tenantId:"name",
-    menuItemType: "quicklink",
-    applicationCode: "flux",
-    menuItemCode: "mi3",
-    createdBy: "pavithrat",
-    creationDate: new Date().toISOString(),
-    title: "menu item"
-  };
-  describe("Testing saveMenuItem", () => {
-    beforeEach((done) => {
-      menuItemDb.deleteAll().then((res) => {
+
+  describe("Testing saveMenuItem index.js", () => {
+    before((done) => {
+      mongoose.connect(MONGO_DB_URL);
+      let connection = mongoose.connection;
+      connection.once("open", () => {
         done();
-      }).catch((e) => {
-        done(e);
       });
     });
-
-    it("should save a menuItem to database", (done) => {
-      let res = menuItem.saveMenuItem(testItem1);
-      expect(res).to.be.eventually.a("object")
-        .to.have.property("menuItemCode")
-        .to.eql(testItem1.menuItemCode)
-        .notify(done);
-    });
-
-    it("should be rejected with Validation Error", (done) => {
-      let res = menuItem.saveMenuItem({
-        menuItemId: 100
+    var testItem1 = {
+      tenantId: "name",
+      menuItemType: "quicklink",
+      applicationCode: "flux",
+      menuItemCode: "mi3",
+      createdBy: "pavithrat",
+      creationDate: new Date().toISOString(),
+      title: "menu item"
+    };
+    var testItem2 = {
+      tenantId: "name",
+      menuItemType: "quicklink",
+      applicationCode: "flux",
+      menuItemCode: "mi3",
+      createdBy: "pavithrat",
+      creationDate: new Date().toISOString(),
+      title: "menu item"
+    };
+    describe("Testing saveMenuItem", () => {
+      beforeEach((done) => {
+        menuItemDb.deleteAll().then((res) => {
+          done();
+        }).catch((e) => {
+          done(e);
+        });
       });
-      expect(res).to.be.rejectedWith("Validation Failed")
-        .notify(done);
+
+      it("should save a menuItem to database", (done) => {
+        let res = menuItem.saveMenuItem(testItem1);
+        expect(res).to.be.eventually.a("object")
+          .to.have.property("menuItemCode")
+          .to.eql(testItem1.menuItemCode)
+          .notify(done);
+      });
+
+      it("should be rejected with Validation Error", (done) => {
+        let res = menuItem.saveMenuItem({
+          menuItemId: 100
+        });
+        expect(res).to.be.rejectedWith("Validation Failed")
+          .notify(done);
+      });
     });
   });
-});
 
 
-describe("Testing menuGroupItemMap index.js", () => {
-  before((done) => {
-    mongoose.connect(MONGO_DB_URL);
-    let connection = mongoose.connection;
-    connection.once("open", () => {
-      done();
-    });
-  });
-
-  var testMenu = {
-    tenantId:"name",
-    menuGroupItemMapCode: "mgimc",
-    menuGroupId: "first",
-    menuItemId: "mia",
-    createdBy: "vigneshp",
-    applicationCode: "flux",
-    createdDate: Date.now()
-  };
-
-  var testMenu1 = {
-    tenantId:"name",
-    menuGroupItemMapCode: "mgimc",
-    menuGroupId: "first",
-    menuItemId: "mia",
-    createdBy: "vigneshp",
-    applicationCode: "flux",
-    createdDate: Date.now()
-  };
-
-  describe("Testing saveMenuGroupItemMap", () => {
-    beforeEach((done) => {
-      menuGroupItemMapDb.deleteAll().then((res) => {
+  describe("Testing menuGroupItemMap index.js", () => {
+    before((done) => {
+      mongoose.connect(MONGO_DB_URL);
+      let connection = mongoose.connection;
+      connection.once("open", () => {
         done();
-      }).catch((e) => {
-        done(e);
       });
     });
 
-    it("should save a menuGroupItemMap to database", (done) => {
-      let res = menuGroupItemMap.saveMenuGroupItemMap(testMenu);
-      expect(res).to.be.eventually.a("object")
-        .to.have.property("menuGroupItemMapCode")
-        .to.eql(testMenu.menuGroupItemMapCode)
-        .notify(done);
-    });
+    var testMenu = {
+      tenantId: "name",
+      menuGroupItemMapCode: "mgimc",
+      menuGroupId: "first",
+      menuItemId: "mia",
+      createdBy: "vigneshp",
+      applicationCode: "flux",
+      createdDate: Date.now()
+    };
 
-    it("should be rejected with Validation Error", (done) => {
-      let res = menuGroupItemMap.saveMenuGroupItemMap({
-        menuGroupItemMapId: 1
+    var testMenu1 = {
+      tenantId: "name",
+      menuGroupItemMapCode: "mgimc",
+      menuGroupId: "first",
+      menuItemId: "mia",
+      createdBy: "vigneshp",
+      applicationCode: "flux",
+      createdDate: Date.now()
+    };
+
+    describe("Testing saveMenuGroupItemMap", () => {
+      beforeEach((done) => {
+        menuGroupItemMapDb.deleteAll().then((res) => {
+          done();
+        }).catch((e) => {
+          done(e);
+        });
       });
-      expect(res).to.be.rejectedWith("Validation Failed")
-        .notify(done);
+
+      it("should save a menuGroupItemMap to database", (done) => {
+        let res = menuGroupItemMap.saveMenuGroupItemMap(testMenu);
+        expect(res).to.be.eventually.a("object")
+          .to.have.property("menuGroupItemMapCode")
+          .to.eql(testMenu.menuGroupItemMapCode)
+          .notify(done);
+      });
+
+      it("should be rejected with Validation Error", (done) => {
+        let res = menuGroupItemMap.saveMenuGroupItemMap({
+          menuGroupItemMapId: 1
+        });
+        expect(res).to.be.rejectedWith("Validation Failed")
+          .notify(done);
+      });
     });
   });
 });
