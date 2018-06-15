@@ -20,12 +20,50 @@ const db = require("../db/menu");
 describe('menu model validation', () => {
   let menuObject = {
     // add a valid menu Object here
-
+    "tenantId": "IVL",
+    "applicationCode": "FLUX-CDA",
+    "menuGroupCode": "Audit",
+    "title": "AUDIT",
+    "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
+    ],
+    "createdDate": new  Date().toISOString(),
+    "createdBy": "system",
+    "lastUpdatedDate": new Date().toISOString()
   };
 
   let invalidObject={
     //add invalid menu Object here
-
+    "tenantId": "IVL",
+    "applicationCode": 234547,
+    "menuGroupCode": 456,
+    "title": "AUDIT",
+    "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
+    ],
+    "createdDate": new  Date().toISOString(),
+    "createdBy": "system",
+    "lastUpdatedDate": new Date().toISOString()
   };
 
   let undefinedObject; // object that is not defined
@@ -103,8 +141,8 @@ describe('menu model validation', () => {
         var result = menu.save(menuObject);
         //replace anyAttribute with one of the valid attribute of a menu Object
         expect(result)
-          .to.eventually.have.property("anyAttribute")
-          .to.eql(menuObject.anyAttribute)
+          .to.eventually.have.property("applicationCode")
+          .to.eql(menuObject.applicationCode)
           .notify(done);
       } catch (e) {
         expect.fail(e, null, `saving menu object should not throw exception: ${e}`);
@@ -127,21 +165,59 @@ describe('menu model validation', () => {
   describe('testing menu.getAll when there is data in database', () => {
     let object1={
       //add one valid menu object here
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Audit",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }
+      ],
+      "createdDate": new  Date().toISOString(),
+      "createdBy": "system",
+      "lastUpdatedDate": new Date().toISOString()
     },object2={
       //add one more valid menu object here
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "AuditOne",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }
+      ],
+      "createdDate": new  Date().toISOString(),
+      "createdBy": "system",
+      "lastUpdatedDate": new Date().toISOString()
     };
     beforeEach((done) => {
       db.deleteAll().then((res) => {
         db.save(object1).then((res) => {
           db.save(object2).then((res) => {
-            db.save(object1).then((res)=> {
+            //db.save(object1).then((res)=> {
               done();
             });
           });
         });
-      });
+      //});
     });
 
     it('should return limited records as specified by the limit parameter', (done) => {
@@ -168,7 +244,7 @@ describe('menu model validation', () => {
             expect(docs)
               .to.be.a('array');
             expect(docs.length)
-              .to.equal(3);
+              .to.equal(2);
             done();
           });
       } catch (e) {
@@ -319,10 +395,42 @@ describe('menu model validation', () => {
   describe("testing menu.getOne",()=> {
     let object1={
       //add one valid menu object here
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Audit",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }
+      ]
     },object2={
       //add one more valid menu object here
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Auditone",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLEONE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USERONe",
+          "title": "User Management"
+        }
+      ]
     };
     beforeEach((done) => {
       db.deleteAll().then((res) => {
@@ -337,11 +445,11 @@ describe('menu model validation', () => {
     it("should return one menu record identified by attribute",(done)=> {
       try {
         // take one attribute from object1 or object2 and its value
-        let res = menu.getOne(attribute of object1/object2,its value);
+        let res = menu.getOne(`applicationCode`,`FLUX-CDA`);
         expect(res)
           .to.eventually.be.a("object")
-          .to.have.property('attribute of object1/object2')
-          .to.eql('attribute value')
+          .to.have.property('applicationCode')
+          .to.eql('FLUX-CDA')
           .notify(done);
       } catch (e) {
         expect.fail(e, null, `exception: ${e}`);
@@ -351,7 +459,7 @@ describe('menu model validation', () => {
     it('should return empty object i.e. {} as no menu is identified by this attribute', (done) => {
       try {
         // replace validAttribute and add a bad value to it
-        var res = menu.getOne(validAttribute,badValue);
+        var res = menu.getOne(`applicationCode`,`ujgvgy`);
         expect(res).to.eventually.to.eql({})
           .notify(done);
       } catch (e) {
@@ -363,7 +471,7 @@ describe('menu model validation', () => {
       try {
         //replace validvalue with a valid value for an attribute
         let undefinedAttribute;
-        let res = menu.getOne(undefinedAttribute,validValue);
+        let res = menu.getOne(undefinedAttribute,`FLUX_CDA`);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -376,7 +484,7 @@ describe('menu model validation', () => {
       try {
         // replace validAttribute with a valid attribute name
         let undefinedValue;
-        let res = menu.getOne(validAttribute,undefinedValue);
+        let res = menu.getOne(`applicationCode`,undefinedValue);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -388,7 +496,7 @@ describe('menu model validation', () => {
     it("should throw IllegalArgumentException for null attribute parameter ", (done) => {
       try {
         //replace validValue with a valid value for an attribute
-        let res = menu.getOne(null,validValue);
+        let res = menu.getOne(null,`FLUX-CDA`);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -400,7 +508,7 @@ describe('menu model validation', () => {
     it("should throw IllegalArgumentException for null value parameter ", (done) => {
       try {
         //replace attributeValue with a valid attribute name
-        let res = menu.getOne(attributeValue,null);
+        let res = menu.getOne(`applicationCode`,null);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -414,10 +522,42 @@ describe('menu model validation', () => {
   describe("testing menu.getMany",()=> {
       let object1={
         //add one valid menu object here
-
+        "tenantId": "IVL",
+        "applicationCode": "FLUX-CDA",
+        "menuGroupCode": "AuditTwo",
+        "title": "AUDIT",
+        "menuItems": [{
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "ROLEtwo",
+            "title": "Role Management"
+          },
+          {
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "USERtwo",
+            "title": "User Management"
+          }
+        ]
       },object2={
         //add one more valid menu object here
-
+        "tenantId": "IVL",
+        "applicationCode": "FLUX-CDA",
+        "menuGroupCode": "Auditone",
+        "title": "AUDIT",
+        "menuItems": [{
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "ROLEone",
+            "title": "Role Management"
+          },
+          {
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "USERone",
+            "title": "User Management"
+          }
+        ]
       };
       beforeEach((done) => {
         db.deleteAll().then((res) => {
@@ -432,7 +572,7 @@ describe('menu model validation', () => {
       it("should return array of menu records identified by attribute",(done)=> {
         try {
           // take one attribute from object1 or object2 and its value
-          let res = menu.getMany(attribute of object1/object2,its value);
+          let res = menu.getMany(`applicationCode`,`FLUX-CDA`);
           expect(res).to.eventually.be.a("array");
           //enter proper length according to input value
           expect(res).to.eventually.have.length(1);
@@ -445,7 +585,7 @@ describe('menu model validation', () => {
       it('should return empty array i.e. [] as no menu is identified by this attribute', (done) => {
         try {
           // replace validAttribute and add a bad value to it
-          var res = menu.getMany(validAttribute,badValue);
+          var res = menu.getMany(`applicationCode`,`jhvghf`);
           expect(res).to.eventually.to.eql([])
             .notify(done);
         } catch (e) {
@@ -457,7 +597,7 @@ describe('menu model validation', () => {
         try {
           //replace validvalue with a valid value for an attribute
           let undefinedAttribute;
-          let res = menu.getMany(undefinedAttribute,validValue);
+          let res = menu.getMany(undefinedAttribute,`FLUX-CDA`);
           expect(res)
             .to.eventually.to.be.rejectedWith("IllegalArgumentException")
             .notify(done);
@@ -470,7 +610,7 @@ describe('menu model validation', () => {
         try {
           // replace validAttribute with a valid attribute name
           let undefinedValue;
-          let res = menu.getMany(validAttribute,undefinedValue);
+          let res = menu.getMany(`applicationCode`,undefinedValue);
           expect(res)
             .to.eventually.to.be.rejectedWith("IllegalArgumentException")
             .notify(done);
@@ -482,7 +622,7 @@ describe('menu model validation', () => {
       it("should throw IllegalArgumentException for null attribute parameter ", (done) => {
         try {
           //replace validValue with a valid value for an attribute
-          let res = menu.getMany(null,validValue);
+          let res = menu.getMany(null,`FLUX-CDA`);
           expect(res)
             .to.eventually.to.be.rejectedWith("IllegalArgumentException")
             .notify(done);
@@ -494,7 +634,7 @@ describe('menu model validation', () => {
       it("should throw IllegalArgumentException for null value parameter ", (done) => {
         try {
           //replace attributeValue with a valid attribute name
-          let res = menu.getMany(attributeValue,null);
+          let res = menu.getMany(`applicationCode`,null);
           expect(res)
             .to.eventually.to.be.rejectedWith("IllegalArgumentException")
             .notify(done);

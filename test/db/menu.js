@@ -25,13 +25,87 @@ describe("db menu testing", () => {
   });
 
   let object1 = {
+    "tenantId": "IVL",
+    "applicationCode": "FLUX-CDA",
+    "menuGroupCode": "Administration",
+    "title": "ADMINISTRATION",
+    "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
+    ]
     // add a valid menu object
 
   };
   let object2 = {
-  // add a valid menu object
-
+    // add a valid menu object
+    "tenantId": "IVL",
+    "applicationCode": "FLUX-CDA",
+    "menuGroupCode": "Maintenance",
+    "title": "MAINTENANCE",
+    "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
+    ]
   };
+  let object3 = {
+    // add a valid menu object
+    "tenantId": "IVL",
+    "applicationCode": "FLUX-CDA",
+    "menuGroupCode": "Storage",
+    "title": "STORAGE",
+    "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
+    ]
+  };
+  let object4 = {
+    // add a valid menu object
+    "tenantId": "IVL",
+    "applicationCode": "FLUX-CDA",
+    "menuGroupCode": "Audit",
+    "title": "AUDIT",
+    "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
+    ]
+  };
+
 
   describe("testing menu.save", () => {
     // Testing save
@@ -48,10 +122,28 @@ describe("db menu testing", () => {
     it("should save valid menu to database", (done) => {
       let testmenuCollection = {
         // add a valid menu object
+        "tenantId": "IVL",
+        "applicationCode": "FLUX-CDA",
+        "menuGroupCode": "Administration",
+        "title": "ADMINISTRATION",
+        "menuItems": [{
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "ROLE",
+            "title": "Role Management"
+          },
+          {
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "USER",
+            "title": "User Management"
+          }
+        ]
       };
       let res = menu.save(testmenuCollection);
       expect(res)
-        .to.eventually.include(testmenuCollection)
+        .to.eventually.have.property("applicationCode")
+        .to.eql("FLUX-CDA")
         .notify(done);
     });
 
@@ -60,7 +152,22 @@ describe("db menu testing", () => {
 
       let invalidObject = {
         // add a invalid menu object
-
+        "tenantId": "IVL",
+        "menuGroupCode": "Administration",
+        "title": "ADMINISTRATION",
+        "menuItems": [{
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "ROLE",
+            "title": "Role Management"
+          },
+          {
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "USER",
+            "title": "User Management"
+          }
+        ]
       };
       let res = menu.save(invalidObject);
       expect(res)
@@ -69,7 +176,7 @@ describe("db menu testing", () => {
     });
   });
 
-  describe("testing menu.findAll by limit",()=> {
+  describe("testing menu.findAll by limit", () => {
     // 1. Delete all records in the table and insert
     //    4 new records.
     // find -should return an array of size equal to value of limit with the
@@ -77,57 +184,59 @@ describe("db menu testing", () => {
     // Caveat - the order of the roleMenuItemMaps fetched is indeterminate
 
     // delete all records and insert four roleMenuItemMaps
-      beforeEach((done)=> {
-        menu.deleteAll().then(()=> {
-          menu.save(object1).then((res)=> {
-            menu.save(object2).then((res)=> {
-              menu.save(object1).then((res)=> {
-                menu.save(object2).then((res)=> {
-                  done();
-                });
+    beforeEach((done) => {
+      menu.deleteAll().then(() => {
+        menu.save(object1).then((res) => {
+          menu.save(object2).then((res) => {
+            menu.save(object3).then((res) => {
+              menu.save(object4).then((res) => {
+                done();
               });
             });
           });
         });
       });
+    });
 
-      it("should return limited number of records",(done)=> {
-        let res = menu.findAll(3);
-        expect(res)
-          .to.be.fulfilled.then((docs) => {
-            expect(docs)
-              .to.be.a('array');
-            expect(docs.length)
-              .to.equal(3);
-            expect(docs[0])
-              .to.include(object1);
-            done();
-          }, (err) => {
-            done(err);
-          })
-          .catch((e) => {
-            done(e);
-          });
-      });
+    it("should return limited number of records", (done) => {
+      let res = menu.findAll(3);
+      expect(res)
+        .to.be.fulfilled.then((docs) => {
+          expect(docs)
+            .to.be.a('array');
+          expect(docs.length)
+            .to.equal(3);
+          expect(docs[0])
+            .to.have.property("applicationCode")
+            .to.eql("FLUX-CDA");
+          done();
+        }, (err) => {
+          done(err);
+        })
+        .catch((e) => {
+          done(e);
+        });
+    });
 
-      it("should return all records if value of limit parameter is less than 1 i.e, 0 or -1",(done)=> {
-        let res = menu.findAll(-1);
-        expect(res)
-          .to.be.fulfilled.then((docs) => {
-            expect(docs)
-              .to.be.a('array');
-            expect(docs.length)
-              .to.equal(4);
-            expect(docs[0])
-              .to.include(object1);
-            done();
-          }, (err) => {
-            done(err);
-          })
-          .catch((e) => {
-            done(e);
-          });
-      });
+    it("should return all records if value of limit parameter is less than 1 i.e, 0 or -1", (done) => {
+      let res = menu.findAll(-1);
+      expect(res)
+        .to.be.fulfilled.then((docs) => {
+          expect(docs)
+            .to.be.a('array');
+          expect(docs.length)
+            .to.equal(4);
+          expect(docs[0])
+            .to.have.property("applicationCode")
+            .to.eql("FLUX-CDA");
+          done();
+        }, (err) => {
+          done(err);
+        })
+        .catch((e) => {
+          done(e);
+        });
+    });
   });
 
   describe("testing roleMenuItemMap.find without data", () => {
@@ -169,7 +278,23 @@ describe("db menu testing", () => {
     // 5. Query with arbitrary object
     let testObject = {
       //add a valid menu object
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Audit",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }
+      ]
     };
     var id;
     beforeEach((done) => {
@@ -186,8 +311,9 @@ describe("db menu testing", () => {
     it("should return menu identified by Id ", (done) => {
       let res = menu.findById(id);
       expect(res)
-        .to.eventually.include(testObject)
-        .notify(done);
+      .to.eventually.have.property("applicationCode")
+      .to.eql("FLUX-CDA")
+      .notify(done);
     });
 
     it("should return null as no menu is identified by this Id ", (done) => {
@@ -220,16 +346,17 @@ describe("db menu testing", () => {
 
     it("should return object for valid attribute value", (done) => {
       // take one valid attribute and its value
-      let attributename="";
-      let attributeValue="";
+      let attributename = "applicationCode";
+      let attributeValue = "FLUX-CDA";
       let res = menu.findOne(attributename, attributeValue);
       expect(res)
-        .to.eventually.include(object1)
-        .notify(done);
+      .to.eventually.have.property("applicationCode")
+      .to.eql("FLUX-CDA")
+      .notify(done);
     });
 
     it("should return null as no menu is identified by this attribute ", (done) => {
-      let res = menu.findOne(validAttribute, invalidValue);
+      let res = menu.findOne(`applicationCode`, `jhsgjfgf`);
       expect(res)
         .to.eventually.to.eql(null)
         .notify(done);
@@ -240,13 +367,45 @@ describe("db menu testing", () => {
     // Delete all records, insert two record
     // 1. Query by one attribute and it should return all menus having attribute value
     // 2. Query by an arbitrary attribute value and it should return {}
-    let menu1={
+    let menu1 = {
       //add valid object
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Audit",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }
+      ]
     };
-    let menu2={
+    let menu2 = {
       //add valid object with one attribute value same as "menu1"
-
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Audit",
+      "title": "AUDIT",
+      "menuItems": [{
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }
+      ]
     };
     // delete all records and insert two menus
     beforeEach((done) => {
@@ -264,17 +423,17 @@ describe("db menu testing", () => {
 
     it("should return array of objects for valid attribute value", (done) => {
       // take one valid attribute and its value
-      let attributename="";
-      let attributeValue="";
+      let attributename = "applicationCode";
+      let attributeValue = "FLUX-CDA";
       let res = menu.findMany(attributename, attributeValue);
-      expect(res).to.eventually.be.a("array");
+      expect(res).to.eventually.be.a("array")
       //enter proper length according to input attribute
-      expect(res).to.eventually.have.length(1);
+      .to.have.length(1);
       done();
     });
 
     it("should return empty array as no menu is identified by this attribute ", (done) => {
-      let res = menu.findMany(validAttribute, invalidValue);
+      let res = menu.findMany("applicationCode", "hjkfg");
       expect(res)
         .to.eventually.to.eql([])
         .notify(done);
