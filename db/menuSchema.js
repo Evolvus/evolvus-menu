@@ -56,7 +56,7 @@ var menuSchema = new mongoose.Schema({
     type: String
   },
   updatedBy: {
-    type: [String, null]
+    type: String
   },
   createdDate: {
     type: Date

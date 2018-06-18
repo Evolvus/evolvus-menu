@@ -56,7 +56,7 @@ module.exports.schema = {
           "type": "string"
         },
         "updatedBy": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "createdDate": {
           "type": "string",

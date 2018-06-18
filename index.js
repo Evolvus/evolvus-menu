@@ -5,6 +5,7 @@ const menuCollection = require("./db/menu");
 const validate = require("jsonschema")
   .validate;
 const docketClient=require("evolvus-docket-client");
+var menuDBschema=require("./db/menuSchema");
 
 var docketObject={
   // required fields
@@ -19,6 +20,10 @@ var docketObject={
   details:"",
   //non required fields
   level:""
+};
+
+module.exports.menu={
+  menuDBschema,menuSchema
 };
 
 module.exports.validate = (menuObject) => {
