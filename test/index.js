@@ -25,43 +25,43 @@ describe('menu model validation', () => {
     "menuGroupCode": "Audit",
     "title": "AUDIT",
     "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management"
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management"
-      }
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "ROLE",
+      "title": "Role Management"
+    },
+    {
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "USER",
+      "title": "User Management"
+    }
     ],
-    "createdDate": new  Date().toISOString(),
+    "createdDate": new Date().toISOString(),
     "createdBy": "system",
     "lastUpdatedDate": new Date().toISOString()
   };
 
-  let invalidObject={
+  let invalidObject = {
     //add invalid menu Object here
     "tenantId": "IVL",
     "applicationCode": 234547,
     "menuGroupCode": 456,
     "title": "AUDIT",
     "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management"
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management"
-      }
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "ROLE",
+      "title": "Role Management"
+    },
+    {
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "USER",
+      "title": "User Management"
+    }
     ],
-    "createdDate": new  Date().toISOString(),
+    "createdDate": new Date().toISOString(),
     "createdBy": "system",
     "lastUpdatedDate": new Date().toISOString()
   };
@@ -74,12 +74,12 @@ describe('menu model validation', () => {
     mongoose.connect(MONGO_DB_URL);
     let connection = mongoose.connection;
     connection.once("open", () => {
-        debug("ok got the connection");
-        done();
+      debug("ok got the connection");
+      done();
     });
   });
 
-  describe("validation against jsonschema",()=> {
+  describe("validation against jsonschema", () => {
     it("valid menu should validate successfully", (done) => {
       try {
         var res = menu.validate(menuObject);
@@ -104,7 +104,7 @@ describe('menu model validation', () => {
       }
     });
 
-    if("should error out for undefined objects", (done) => {
+    if ("should error out for undefined objects", (done) => {
       try {
         var res = menu.validate(undefinedObject);
         expect(res)
@@ -115,7 +115,7 @@ describe('menu model validation', () => {
       }
     });
 
-    if("should error out for null objects", (done) => {
+    if ("should error out for null objects", (done) => {
       try {
         var res = menu.validate(nullObject);
         expect(res)
@@ -128,10 +128,10 @@ describe('menu model validation', () => {
 
   });
 
-  describe("testing menu.save method",()=> {
+  describe("testing menu.save method", () => {
 
-    beforeEach((done)=> {
-      db.deleteAll().then((res)=> {
+    beforeEach((done) => {
+      db.deleteAll().then((res) => {
         done();
       });
     });
@@ -163,60 +163,58 @@ describe('menu model validation', () => {
   });
 
   describe('testing menu.getAll when there is data in database', () => {
-    let object1={
+    let object1 = {
       //add one valid menu object here
       "tenantId": "IVL",
       "applicationCode": "FLUX-CDA",
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management"
-        }
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
       ],
-      "createdDate": new  Date().toISOString(),
-      "createdBy": "system",
-      "lastUpdatedDate": new Date().toISOString()
-    },object2={
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
+    }, object2 = {
       //add one more valid menu object here
       "tenantId": "IVL",
       "applicationCode": "FLUX-CDA",
       "menuGroupCode": "AuditOne",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management"
-        }
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }
       ],
-      "createdDate": new  Date().toISOString(),
-      "createdBy": "system",
-      "lastUpdatedDate": new Date().toISOString()
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
     };
     beforeEach((done) => {
       db.deleteAll().then((res) => {
         db.save(object1).then((res) => {
           db.save(object2).then((res) => {
             //db.save(object1).then((res)=> {
-              done();
-            });
+            done();
           });
         });
+      });
       //});
     });
 
@@ -232,7 +230,7 @@ describe('menu model validation', () => {
             done();
           });
       } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
+        expect.fail(e, null, `exception: ${e}`);
       }
     });
 
@@ -248,7 +246,7 @@ describe('menu model validation', () => {
             done();
           });
       } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
+        expect.fail(e, null, `exception: ${e}`);
       }
     });
 
@@ -259,7 +257,7 @@ describe('menu model validation', () => {
           .to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
       } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
+        expect.fail(e, null, `exception: ${e}`);
       }
     });
 
@@ -271,7 +269,7 @@ describe('menu model validation', () => {
           .to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
       } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
+        expect.fail(e, null, `exception: ${e}`);
       }
     });
 
@@ -392,60 +390,63 @@ describe('menu model validation', () => {
 
   });
 
-  describe("testing menu.getOne",()=> {
-    let object1={
+  describe("testing menu.getOne", () => {
+    let object1 = {
       //add one valid menu object here
       "tenantId": "IVL",
       "applicationCode": "FLUX-CDA",
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management"
-        }
-      ]
-    },object2={
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
+
+    }, object2 = {
       //add one more valid menu object here
       "tenantId": "IVL",
       "applicationCode": "FLUX-CDA",
       "menuGroupCode": "Auditone",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLEONE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USERONe",
-          "title": "User Management"
-        }
-      ]
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLEONE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USERONe",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
     };
     beforeEach((done) => {
       db.deleteAll().then((res) => {
         db.save(object1).then((res) => {
           db.save(object2).then((res) => {
-              done();
+            done();
           });
         });
       });
     });
 
-    it("should return one menu record identified by attribute",(done)=> {
+    it("should return one menu record identified by attribute", (done) => {
       try {
         // take one attribute from object1 or object2 and its value
-        let res = menu.getOne(`applicationCode`,`FLUX-CDA`);
+        let res = menu.getOne(`applicationCode`, `FLUX-CDA`);
         expect(res)
           .to.eventually.be.a("object")
           .to.have.property('applicationCode')
@@ -459,7 +460,7 @@ describe('menu model validation', () => {
     it('should return empty object i.e. {} as no menu is identified by this attribute', (done) => {
       try {
         // replace validAttribute and add a bad value to it
-        var res = menu.getOne(`applicationCode`,`ujgvgy`);
+        var res = menu.getOne(`applicationCode`, `ujgvgy`);
         expect(res).to.eventually.to.eql({})
           .notify(done);
       } catch (e) {
@@ -471,7 +472,7 @@ describe('menu model validation', () => {
       try {
         //replace validvalue with a valid value for an attribute
         let undefinedAttribute;
-        let res = menu.getOne(undefinedAttribute,`FLUX_CDA`);
+        let res = menu.getOne(undefinedAttribute, `FLUX_CDA`);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -484,7 +485,7 @@ describe('menu model validation', () => {
       try {
         // replace validAttribute with a valid attribute name
         let undefinedValue;
-        let res = menu.getOne(`applicationCode`,undefinedValue);
+        let res = menu.getOne(`applicationCode`, undefinedValue);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -496,7 +497,7 @@ describe('menu model validation', () => {
     it("should throw IllegalArgumentException for null attribute parameter ", (done) => {
       try {
         //replace validValue with a valid value for an attribute
-        let res = menu.getOne(null,`FLUX-CDA`);
+        let res = menu.getOne(null, `FLUX-CDA`);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -508,7 +509,7 @@ describe('menu model validation', () => {
     it("should throw IllegalArgumentException for null value parameter ", (done) => {
       try {
         //replace attributeValue with a valid attribute name
-        let res = menu.getOne(`applicationCode`,null);
+        let res = menu.getOne(`applicationCode`, null);
         expect(res)
           .to.eventually.to.be.rejectedWith("IllegalArgumentException")
           .notify(done);
@@ -519,128 +520,130 @@ describe('menu model validation', () => {
   });
 
 
-  describe("testing menu.getMany",()=> {
-      let object1={
-        //add one valid menu object here
-        "tenantId": "IVL",
+  describe("testing menu.getMany", () => {
+    let object1 = {
+      //add one valid menu object here
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "AuditTwo",
+      "title": "AUDIT",
+      "menuItems": [{
+        "menuItemType": "menu",
         "applicationCode": "FLUX-CDA",
-        "menuGroupCode": "AuditTwo",
-        "title": "AUDIT",
-        "menuItems": [{
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "ROLEtwo",
-            "title": "Role Management"
-          },
-          {
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "USERtwo",
-            "title": "User Management"
-          }
-        ]
-      },object2={
-        //add one more valid menu object here
-        "tenantId": "IVL",
+        "menuItemCode": "ROLEtwo",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
         "applicationCode": "FLUX-CDA",
-        "menuGroupCode": "Auditone",
-        "title": "AUDIT",
-        "menuItems": [{
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "ROLEone",
-            "title": "Role Management"
-          },
-          {
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "USERone",
-            "title": "User Management"
-          }
-        ]
-      };
-      beforeEach((done) => {
-        db.deleteAll().then((res) => {
-          db.save(object1).then((res) => {
-            db.save(object2).then((res) => {
-                done();
-            });
+        "menuItemCode": "USERtwo",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
+    }, object2 = {
+      //add one more valid menu object here
+      "tenantId": "IVL",
+      "applicationCode": "FLUX-CDA",
+      "menuGroupCode": "Auditone",
+      "title": "AUDIT",
+      "menuItems": [{
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLEone",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USERone",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
+    };
+    beforeEach((done) => {
+      db.deleteAll().then((res) => {
+        db.save(object1).then((res) => {
+          db.save(object2).then((res) => {
+            done();
           });
         });
       });
-
-      it("should return array of menu records identified by attribute",(done)=> {
-        try {
-          // take one attribute from object1 or object2 and its value
-          let res = menu.getMany(`applicationCode`,`FLUX-CDA`);
-          expect(res).to.eventually.be.a("array");
-          //enter proper length according to input value
-          expect(res).to.eventually.have.length(1);
-          done();
-        } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
-        }
-      });
-
-      it('should return empty array i.e. [] as no menu is identified by this attribute', (done) => {
-        try {
-          // replace validAttribute and add a bad value to it
-          var res = menu.getMany(`applicationCode`,`jhvghf`);
-          expect(res).to.eventually.to.eql([])
-            .notify(done);
-        } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
-        }
-      });
-
-      it("should throw IllegalArgumentException for undefined Attribute parameter ", (done) => {
-        try {
-          //replace validvalue with a valid value for an attribute
-          let undefinedAttribute;
-          let res = menu.getMany(undefinedAttribute,`FLUX-CDA`);
-          expect(res)
-            .to.eventually.to.be.rejectedWith("IllegalArgumentException")
-            .notify(done);
-        } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
-        }
-      });
-
-      it("should throw IllegalArgumentException for undefined Attribute parameter ", (done) => {
-        try {
-          // replace validAttribute with a valid attribute name
-          let undefinedValue;
-          let res = menu.getMany(`applicationCode`,undefinedValue);
-          expect(res)
-            .to.eventually.to.be.rejectedWith("IllegalArgumentException")
-            .notify(done);
-        } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
-        }
-      });
-
-      it("should throw IllegalArgumentException for null attribute parameter ", (done) => {
-        try {
-          //replace validValue with a valid value for an attribute
-          let res = menu.getMany(null,`FLUX-CDA`);
-          expect(res)
-            .to.eventually.to.be.rejectedWith("IllegalArgumentException")
-            .notify(done);
-        } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
-        }
-      });
-
-      it("should throw IllegalArgumentException for null value parameter ", (done) => {
-        try {
-          //replace attributeValue with a valid attribute name
-          let res = menu.getMany(`applicationCode`,null);
-          expect(res)
-            .to.eventually.to.be.rejectedWith("IllegalArgumentException")
-            .notify(done);
-        } catch (e) {
-          expect.fail(e, null, `exception: ${e}`);
-        }
-      });
     });
+
+    it("should return array of menu records identified by attribute", (done) => {
+      try {
+        // take one attribute from object1 or object2 and its value
+        let res = menu.getMany(`applicationCode`, `FLUX-CDA`);
+        expect(res).to.eventually.be.a("array");
+        //enter proper length according to input value
+        expect(res).to.eventually.have.length(2);
+        done();
+      } catch (e) {
+        expect.fail(e, null, `exception: ${e}`);
+      }
+    });
+
+    it('should return empty array i.e. [] as no menu is identified by this attribute', (done) => {
+      try {
+        // replace validAttribute and add a bad value to it
+        var res = menu.getMany(`applicationCode`, `jhvghf`);
+        expect(res).to.eventually.to.eql([])
+          .notify(done);
+      } catch (e) {
+        expect.fail(e, null, `exception: ${e}`);
+      }
+    });
+
+    it("should throw IllegalArgumentException for undefined Attribute parameter ", (done) => {
+      try {
+        //replace validvalue with a valid value for an attribute
+        let undefinedAttribute;
+        let res = menu.getMany(undefinedAttribute, `FLUX-CDA`);
+        expect(res)
+          .to.eventually.to.be.rejectedWith("IllegalArgumentException")
+          .notify(done);
+      } catch (e) {
+        expect.fail(e, null, `exception: ${e}`);
+      }
+    });
+
+    it("should throw IllegalArgumentException for undefined Attribute parameter ", (done) => {
+      try {
+        // replace validAttribute with a valid attribute name
+        let undefinedValue;
+        let res = menu.getMany(`applicationCode`, undefinedValue);
+        expect(res)
+          .to.eventually.to.be.rejectedWith("IllegalArgumentException")
+          .notify(done);
+      } catch (e) {
+        expect.fail(e, null, `exception: ${e}`);
+      }
+    });
+
+    it("should throw IllegalArgumentException for null attribute parameter ", (done) => {
+      try {
+        //replace validValue with a valid value for an attribute
+        let res = menu.getMany(null, `FLUX-CDA`);
+        expect(res)
+          .to.eventually.to.be.rejectedWith("IllegalArgumentException")
+          .notify(done);
+      } catch (e) {
+        expect.fail(e, null, `exception: ${e}`);
+      }
+    });
+
+    it("should throw IllegalArgumentException for null value parameter ", (done) => {
+      try {
+        //replace attributeValue with a valid attribute name
+        let res = menu.getMany(`applicationCode`, null);
+        expect(res)
+          .to.eventually.to.be.rejectedWith("IllegalArgumentException")
+          .notify(done);
+      } catch (e) {
+        expect.fail(e, null, `exception: ${e}`);
+      }
+    });
+  });
 });

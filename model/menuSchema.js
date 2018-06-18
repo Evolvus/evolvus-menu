@@ -5,7 +5,6 @@ module.exports.schema = {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "menuModel",
   "type": "object",
-
       "properties": {
         "tenantId": {
           "type": "string",
@@ -50,7 +49,8 @@ module.exports.schema = {
               "minLength": 1,
               "maxLength": 20
             }
-          }
+          },
+          "required":["menuItemType","applicationCode","menuItemCode","title"]
         },
         "createdBy": {
           "type": "string"
@@ -63,7 +63,7 @@ module.exports.schema = {
           "format": "date-time"
         },
         "lastUpdatedDate": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "date-time"
         },
         "enableFlag": {
@@ -75,5 +75,5 @@ module.exports.schema = {
           "default": 0
         }
       },
-  "required": ["tenantId", "applicationCode",  "createdDate", "createdBy", "lastUpdatedDate"]
+  "required": ["tenantId", "applicationCode","menuGroupCode","title","createdDate", "createdBy", "menuItems"]
 };

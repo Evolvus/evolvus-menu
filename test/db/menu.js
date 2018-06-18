@@ -25,25 +25,25 @@ describe("db menu testing", () => {
   });
 
   let object1 = {
+    // add a valid menu object
     "tenantId": "IVL",
     "applicationCode": "FLUX-CDA",
     "menuGroupCode": "Administration",
     "title": "ADMINISTRATION",
     "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management"
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management"
-      }
-    ]
-    // add a valid menu object
-
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "ROLE",
+      "title": "Role Management"
+    },
+    {
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "USER",
+      "title": "User Management"
+    }],
+    "createdBy": "System",
+    "createdDate": new Date().toISOString()
   };
   let object2 = {
     // add a valid menu object
@@ -52,18 +52,20 @@ describe("db menu testing", () => {
     "menuGroupCode": "Maintenance",
     "title": "MAINTENANCE",
     "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management"
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management"
-      }
-    ]
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "ROLE",
+      "title": "Role Management"
+    },
+    {
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "USER",
+      "title": "User Management"
+    }
+    ],
+    "createdBy": "System",
+    "createdDate": new Date().toISOString()
   };
   let object3 = {
     // add a valid menu object
@@ -72,18 +74,20 @@ describe("db menu testing", () => {
     "menuGroupCode": "Storage",
     "title": "STORAGE",
     "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management"
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management"
-      }
-    ]
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "ROLE",
+      "title": "Role Management"
+    },
+    {
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "USER",
+      "title": "User Management"
+    }
+    ],
+    "createdBy": "System",
+    "createdDate": new Date().toISOString()
   };
   let object4 = {
     // add a valid menu object
@@ -92,18 +96,20 @@ describe("db menu testing", () => {
     "menuGroupCode": "Audit",
     "title": "AUDIT",
     "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management"
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management"
-      }
-    ]
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "ROLE",
+      "title": "Role Management"
+    },
+    {
+      "menuItemType": "menu",
+      "applicationCode": "FLUX-CDA",
+      "menuItemCode": "USER",
+      "title": "User Management"
+    }
+    ],
+    "createdBy": "System",
+    "createdDate": new Date().toISOString()
   };
 
 
@@ -127,18 +133,19 @@ describe("db menu testing", () => {
         "menuGroupCode": "Administration",
         "title": "ADMINISTRATION",
         "menuItems": [{
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "ROLE",
-            "title": "Role Management"
-          },
-          {
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "USER",
-            "title": "User Management"
-          }
-        ]
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }],
+        "createdDate": new Date().toISOString(),
+        "createdBy": "system"
       };
       let res = menu.save(testmenuCollection);
       expect(res)
@@ -156,18 +163,19 @@ describe("db menu testing", () => {
         "menuGroupCode": "Administration",
         "title": "ADMINISTRATION",
         "menuItems": [{
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "ROLE",
-            "title": "Role Management"
-          },
-          {
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "USER",
-            "title": "User Management"
-          }
-        ]
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management"
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management"
+        }],
+        "createdDate": new Date().toISOString(),
+        "createdBy": "system"
       };
       let res = menu.save(invalidObject);
       expect(res)
@@ -283,18 +291,19 @@ describe("db menu testing", () => {
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management"
-        }
-      ]
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
     };
     var id;
     beforeEach((done) => {
@@ -311,9 +320,9 @@ describe("db menu testing", () => {
     it("should return menu identified by Id ", (done) => {
       let res = menu.findById(id);
       expect(res)
-      .to.eventually.have.property("applicationCode")
-      .to.eql("FLUX-CDA")
-      .notify(done);
+        .to.eventually.have.property("applicationCode")
+        .to.eql("FLUX-CDA")
+        .notify(done);
     });
 
     it("should return null as no menu is identified by this Id ", (done) => {
@@ -350,9 +359,9 @@ describe("db menu testing", () => {
       let attributeValue = "FLUX-CDA";
       let res = menu.findOne(attributename, attributeValue);
       expect(res)
-      .to.eventually.have.property("applicationCode")
-      .to.eql("FLUX-CDA")
-      .notify(done);
+        .to.eventually.have.property("applicationCode")
+        .to.eql("FLUX-CDA")
+        .notify(done);
     });
 
     it("should return null as no menu is identified by this attribute ", (done) => {
@@ -374,18 +383,19 @@ describe("db menu testing", () => {
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management"
-        }
-      ]
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
     };
     let menu2 = {
       //add valid object with one attribute value same as "menu1"
@@ -394,18 +404,19 @@ describe("db menu testing", () => {
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management"
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management"
-        }
-      ]
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management"
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management"
+      }],
+      "createdDate": new Date().toISOString(),
+      "createdBy": "system"
     };
     // delete all records and insert two menus
     beforeEach((done) => {
@@ -427,8 +438,8 @@ describe("db menu testing", () => {
       let attributeValue = "FLUX-CDA";
       let res = menu.findMany(attributename, attributeValue);
       expect(res).to.eventually.be.a("array")
-      //enter proper length according to input attribute
-      .to.have.length(1);
+        //enter proper length according to input attribute
+        .to.have.length(2);
       done();
     });
 

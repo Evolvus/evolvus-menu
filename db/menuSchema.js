@@ -26,13 +26,13 @@ var menuSchema = new mongoose.Schema({
     minLength: 1,
     maxLength: 20
   },
-  menuItems: {
-    type: Array,
-    properties: {
+  menuItems: [
+    {
       menuItemType: {
         type: String,
         minLength: 1,
-        maxLength: 20
+        maxLength: 20,
+        required: true
       },
       applicationCode: {
         type: String,
@@ -43,23 +43,27 @@ var menuSchema = new mongoose.Schema({
       menuItemCode: {
         type: String,
         minLength: 1,
-        maxLength: 20
+        maxLength: 20,
+        required: true
       },
       title: {
         type: String,
         minLength: 1,
-        maxLength: 20
+        maxLength: 20,
+        required: true
       }
     }
-  },
+  ],
   createdBy: {
-    type: String
+    type: String,
+    required:true
   },
   updatedBy: {
     type: String
   },
   createdDate: {
-    type: Date
+    type: Date,
+    required:true
   },
   lastUpdatedDate: {
     type: Date
@@ -72,8 +76,6 @@ var menuSchema = new mongoose.Schema({
     type: Number,
     default: 0
   }
-
-
 });
 
 module.exports = menuSchema;
