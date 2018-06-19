@@ -19,7 +19,8 @@ var menuSchema = new mongoose.Schema({
   menuGroupCode: {
     type: String,
     minLength: 1,
-    maxLength: 20
+    maxLength: 20,
+    unique:true
   },
   title: {
     type: String,
@@ -51,6 +52,10 @@ var menuSchema = new mongoose.Schema({
         minLength: 1,
         maxLength: 20,
         required: true
+      },
+      menuItemOrder:{
+        type:Number,
+        required:true
       }
     }
   ],
@@ -75,6 +80,10 @@ var menuSchema = new mongoose.Schema({
   deletedFlag: {
     type: Number,
     default: 0
+  },
+  menuGroupOrder:{
+    type:Number,
+    required:true
   }
 });
 

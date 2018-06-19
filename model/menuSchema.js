@@ -48,9 +48,13 @@ module.exports.schema = {
               "type": "string",
               "minLength": 1,
               "maxLength": 20
+            },
+            "menuItemOrder":{
+              "type":"number",
+              "required":"true"
             }
           },
-          "required":["menuItemType","applicationCode","menuItemCode","title"]
+          "required":["menuItemType","applicationCode","menuItemCode","title","menuItemOrder"]
         },
         "createdBy": {
           "type": "string"
@@ -73,7 +77,11 @@ module.exports.schema = {
         "deletedFlag": {
           "type": "number",
           "default": 0
+        },
+        "menuGroupOrder":{
+          "type":"number",
+          "required":"true"
         }
       },
-  "required": ["tenantId", "applicationCode","menuGroupCode","title","createdDate", "createdBy", "menuItems"]
+  "required": ["tenantId", "applicationCode","menuGroupCode","menuGroupOrder","title","createdDate", "createdBy", "menuItems"]
 };
