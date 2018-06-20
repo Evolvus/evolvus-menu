@@ -20,55 +20,57 @@ var menuSchema = new mongoose.Schema({
     type: String,
     minLength: 1,
     maxLength: 20,
-    unique:true
+    unique: true
   },
   title: {
     type: String,
     minLength: 1,
     maxLength: 20
   },
-  menuItems: [
-    {
-      menuItemType: {
-        type: String,
-        minLength: 1,
-        maxLength: 20,
-        required: true
-      },
-      applicationCode: {
-        type: String,
-        minLength: 3,
-        maxLength: 20,
-        required: true
-      },
-      menuItemCode: {
-        type: String,
-        minLength: 1,
-        maxLength: 20,
-        required: true
-      },
-      title: {
-        type: String,
-        minLength: 1,
-        maxLength: 20,
-        required: true
-      },
-      menuItemOrder:{
-        type:Number,
-        required:true
-      }
+  menuItems: [{
+    menuItemType: {
+      type: String,
+      minLength: 1,
+      maxLength: 20,
+      required: true
+    },
+    applicationCode: {
+      type: String,
+      minLength: 3,
+      maxLength: 20,
+      required: true
+    },
+    menuItemCode: {
+      type: String,
+      minLength: 1,
+      maxLength: 20,
+      required: true
+    },
+    title: {
+      type: String,
+      minLength: 1,
+      maxLength: 20,
+      required: true
+    },
+    menuItemOrder: {
+      type: Number,
+      required: true
+    },
+    selectedFlag: {
+      type: Boolean,
+      required: false
     }
-  ],
+  }],
   createdBy: {
     type: String,
-    required:true
+    required: true
   },
   updatedBy: {
     type: String
   },
   createdDate: {
     type: Date,
-    required:true
+    required: true
   },
   lastUpdatedDate: {
     type: Date
@@ -81,9 +83,13 @@ var menuSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  menuGroupOrder:{
-    type:Number,
-    required:true
+  selectedFlag: {
+    type: Boolean,
+    required: false
+  },
+  menuGroupOrder: {
+    type: Number,
+    required: true
   }
 });
 

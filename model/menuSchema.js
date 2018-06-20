@@ -5,18 +5,41 @@ module.exports.schema = {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "menuModel",
   "type": "object",
+  "properties": {
+    "tenantId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "applicationCode": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 20
+    },
+    "menuGroupCode": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "menuItems": {
+      "type": "array",
       "properties": {
-        "tenantId": {
+        "menuItemType": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 64
+          "maxLength": 20
         },
         "applicationCode": {
           "type": "string",
           "minLength": 3,
           "maxLength": 20
         },
-        "menuGroupCode": {
+        "menuItemCode": {
           "type": "string",
           "minLength": 1,
           "maxLength": 20
@@ -26,62 +49,47 @@ module.exports.schema = {
           "minLength": 1,
           "maxLength": 20
         },
-        "menuItems": {
-          "type": "array",
-          "properties": {
-            "menuItemType": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 20
-            },
-            "applicationCode": {
-              "type": "string",
-              "minLength": 3,
-              "maxLength": 20
-            },
-            "menuItemCode": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 20
-            },
-            "title": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 20
-            },
-            "menuItemOrder":{
-              "type":"number",
-              "required":"true"
-            }
-          },
-          "required":["menuItemType","applicationCode","menuItemCode","title","menuItemOrder"]
-        },
-        "createdBy": {
-          "type": "string"
-        },
-        "updatedBy": {
-          "type": "string"
-        },
-        "createdDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "lastUpdatedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "enableFlag": {
+        "menuItemOrder": {
           "type": "number",
-          "default": 1
+          "required": "true"
         },
-        "deletedFlag": {
-          "type": "number",
-          "default": 0
-        },
-        "menuGroupOrder":{
-          "type":"number",
-          "required":"true"
+        "selectedFlag": {
+          "type": "boolean",
+          "required": "false"
         }
       },
-  "required": ["tenantId", "applicationCode","menuGroupCode","menuGroupOrder","title","createdDate", "createdBy", "menuItems"]
+      "required": ["menuItemType", "applicationCode", "menuItemCode", "title", "menuItemOrder"]
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "updatedBy": {
+      "type": "string"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastUpdatedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "enableFlag": {
+      "type": "number",
+      "default": 1
+    },
+    "deletedFlag": {
+      "type": "number",
+      "default": 0
+    },
+    "selectedFlag": {
+      "type": "boolean",
+      "required": "false"
+    },
+    "menuGroupOrder": {
+      "type": "number",
+      "required": "true"
+    }
+  },
+  "required": ["tenantId", "applicationCode", "menuGroupCode", "menuGroupOrder", "title", "createdDate", "createdBy", "menuItems"]
 };
