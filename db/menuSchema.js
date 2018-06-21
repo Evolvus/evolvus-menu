@@ -58,7 +58,8 @@ var menuSchema = new mongoose.Schema({
     },
     selectedFlag: {
       type: Boolean,
-      required: false
+      required: false,
+      default:false
     }
   }],
   createdBy: {
@@ -85,7 +86,8 @@ var menuSchema = new mongoose.Schema({
   },
   selectedFlag: {
     type: Boolean,
-    required: false
+    required: false,
+    default:false
   },
   menuGroupOrder: {
     type: Number,

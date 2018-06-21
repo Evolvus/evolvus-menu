@@ -55,7 +55,7 @@ module.exports.schema = {
         },
         "selectedFlag": {
           "type": "boolean",
-          "required": "false"
+          "default": "false"
         }
       },
       "required": ["menuItemType", "applicationCode", "menuItemCode", "title", "menuItemOrder"]
@@ -84,11 +84,10 @@ module.exports.schema = {
     },
     "selectedFlag": {
       "type": "boolean",
-      "required": "false"
+      "default": "false"
     },
     "menuGroupOrder": {
-      "type": "number",
-      "required": "true"
+      "type": "number"
     }
   },
   "required": ["tenantId", "applicationCode", "menuGroupCode", "menuGroupOrder", "title", "createdDate", "createdBy", "menuItems"]
