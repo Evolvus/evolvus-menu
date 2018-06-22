@@ -27,7 +27,10 @@ var menuSchema = new mongoose.Schema({
     minLength: 1,
     maxLength: 20
   },
-  menuItems: [{
+  menuItems: {
+    type: Array,
+    minItems: 1,
+    required: true,
     menuItemType: {
       type: String,
       minLength: 1,
@@ -59,9 +62,9 @@ var menuSchema = new mongoose.Schema({
     selectedFlag: {
       type: Boolean,
       required: false,
-      default:false
+      default: false
     }
-  }],
+  },
   createdBy: {
     type: String,
     required: true
@@ -87,7 +90,7 @@ var menuSchema = new mongoose.Schema({
   selectedFlag: {
     type: Boolean,
     required: false,
-    default:false
+    default: false
   },
   menuGroupOrder: {
     type: Number,
