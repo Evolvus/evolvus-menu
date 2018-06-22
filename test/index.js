@@ -34,9 +34,9 @@ describe('menu model validation', () => {
       {
         "menuItemType": "menu",
         "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management",
-        "menuItemOrder": 2
+        "menuItemCode": "ROLE",
+        "title": "Role Management",
+        "menuItemOrder": 1
       }
     ],
     "menuGroupOrder": 1,

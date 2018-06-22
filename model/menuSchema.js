@@ -26,41 +26,6 @@ module.exports.schema = {
       "minLength": 1,
       "maxLength": 20
     },
-    "menuItems": {
-      "type": "array",
-      "minItems": 1,
-      "properties": {
-        "menuItemType": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 20
-        },
-        "applicationCode": {
-          "type": "string",
-          "minLength": 3,
-          "maxLength": 20
-        },
-        "menuItemCode": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 20
-        },
-        "title": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 20
-        },
-        "menuItemOrder": {
-          "type": "number",
-          "required": "true"
-        },
-        "selectedFlag": {
-          "type": "boolean",
-          "default": "false"
-        }
-      },
-      "required": ["menuItemType", "applicationCode", "menuItemCode", "title", "menuItemOrder"]
-    },
     "createdBy": {
       "type": "string"
     },
@@ -89,6 +54,44 @@ module.exports.schema = {
     },
     "menuGroupOrder": {
       "type": "number"
+    },
+    "menuItems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "properties": {
+          "menuItemType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "applicationCode": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 20
+          },
+          "menuItemCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "menuItemOrder": {
+            "type": "number",
+            "required": "true"
+          },
+          "selectedFlag": {
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        "required": ["menuItemType", "applicationCode", "menuItemCode", "title", "menuItemOrder"]
+      }
+
     }
   },
   "required": ["tenantId", "applicationCode", "menuGroupCode", "menuGroupOrder", "title", "createdDate", "createdBy", "menuItems"]

@@ -145,29 +145,14 @@ describe("db menu testing", () => {
         "applicationCode": "FLUX-CDA",
         "menuGroupCode": "Administration",
         "title": "ADMINISTRATION",
-        "menuItems": [{
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "ROLE",
-            "title": "Role Management",
-            "menuItemOrder": 1
-          },
-          {
-            "menuItemType": "menu",
-            "applicationCode": "FLUX-CDA",
-            "menuItemCode": "USER",
-            "title": "User Management",
-            "menuItemOrder": 2
-          }
-        ],
+        //"menuItems": [],
         "menuGroupOrder": 1,
         "createdDate": new Date().toISOString(),
         "createdBy": "system"
       };
       let res = menu.save(testmenuCollection);
       expect(res)
-        .to.eventually.have.property("applicationCode")
-        .to.eql("FLUX-CDA")
+        .to.eventually.have.property("_id")
         .notify(done);
     });
 
@@ -177,8 +162,7 @@ describe("db menu testing", () => {
       let invalidObject = {
         // add a invalid menu object
         "tenantId": "IVL",
-        "menuGroupCode": "Administration",
-        "title": "ADMINISTRATION",
+        "title": "AUDIT",
         "menuItems": [{
             "menuItemType": "menu",
             "applicationCode": "FLUX-CDA",
@@ -195,12 +179,12 @@ describe("db menu testing", () => {
           }
         ],
         "menuGroupOrder": 1,
-        "createdDate": new Date().toISOString(),
-        "createdBy": "system"
+        "createdBy": "System",
+        "createdDate": new Date().toISOString()
       };
       let res = menu.save(invalidObject);
       expect(res)
-        .to.be.eventually.rejectedWith("menuCollection validation failed")
+        .to.be.eventually.rejectedWith("menuCollection1 validation failed")
         .notify(done);
     });
   });

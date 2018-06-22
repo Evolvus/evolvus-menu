@@ -4,37 +4,38 @@ const menuSchema = require("./model/menuSchema")
 const menuCollection = require("./db/menu");
 const validate = require("jsonschema")
   .validate;
-const docketClient=require("evolvus-docket-client");
-var menuDBschema=require("./db/menuSchema");
+const docketClient = require("evolvus-docket-client");
+var menuDBschema = require("./db/menuSchema");
 
-var docketObject={
+var docketObject = {
   // required fields
-  application:"PLATFORM",
-  source:"menu",
-  name:"",
-  createdBy:"",
-  ipAddress:"",
-  status:"SUCCESS", //by default
-  eventDateTime:Date.now(),
-  keyDataAsJSON:"",
-  details:"",
+  application: "PLATFORM",
+  source: "menu",
+  name: "",
+  createdBy: "",
+  ipAddress: "",
+  status: "SUCCESS", //by default
+  eventDateTime: Date.now(),
+  keyDataAsJSON: "",
+  details: "",
   //non required fields
-  level:""
+  level: ""
 };
 
-module.exports.menu={
-  menuDBschema,menuSchema
+module.exports.menu = {
+  menuDBschema,
+  menuSchema
 };
 
 module.exports.validate = (menuObject) => {
   return new Promise((resolve, reject) => {
     try {
-      if(typeof menuObject==="undefined" ) {
+      if (typeof menuObject === "undefined") {
         throw new Error("IllegalArgumentException:menuObject is undefined");
       }
       var res = validate(menuObject, menuSchema);
       debug("validation status: ", JSON.stringify(res));
-      if(res.valid) {
+      if (res.valid) {
         resolve(res.valid);
       } else {
         reject(res.errors);
@@ -50,34 +51,32 @@ module.exports.validate = (menuObject) => {
 module.exports.save = (menuObject) => {
   return new Promise((resolve, reject) => {
     try {
-      if(typeof menuObject === 'undefined' || menuObject == null) {
-         throw new Error("IllegalArgumentException: menuObject is null or undefined");
+      if (typeof menuObject === 'undefined' || menuObject == null) {
+        throw new Error("IllegalArgumentException: menuObject is null or undefined");
       }
-      docketObject.name="menu_save";
-      docketObject.keyDataAsJSON=JSON.stringify(menuObject);
-      docketObject.details=`menu creation initiated`;
+      docketObject.name = "menu_save";
+      docketObject.keyDataAsJSON = JSON.stringify(menuObject);
+      docketObject.details = `menu creation initiated`;
       docketClient.postToDocket(docketObject);
       var res = validate(menuObject, menuSchema);
       debug("validation status: ", JSON.stringify(res));
-      if(!res.valid) {
+      if (!res.valid) {
         reject(res.errors);
+      } else {
+        // if the object is valid, save the object to the database
+        menuCollection.save(menuObject).then((result) => {
+          debug(`saved successfully ${result}`);
+          resolve(result);
+        }).catch((e) => {
+          debug(`failed to save with an error: ${e}`);
+          reject(e);
+        });
       }
-
       // Other validations here
-
-
-      // if the object is valid, save the object to the database
-      menuCollection.save(menuObject).then((result) => {
-        debug(`saved successfully ${result}`);
-        resolve(result);
-      }).catch((e) => {
-        debug(`failed to save with an error: ${e}`);
-        reject(e);
-      });
     } catch (e) {
-      docketObject.name="menu_ExceptionOnSave";
-      docketObject.keyDataAsJSON=JSON.stringify(menuObject);
-      docketObject.details=`caught Exception on menu_save ${e.message}`;
+      docketObject.name = "menu_ExceptionOnSave";
+      docketObject.keyDataAsJSON = JSON.stringify(menuObject);
+      docketObject.details = `caught Exception on menu_save ${e.message}`;
       docketClient.postToDocket(docketObject);
       debug(`caught exception ${e}`);
       reject(e);
@@ -94,9 +93,9 @@ module.exports.getAll = (limit) => {
       if (typeof(limit) == "undefined" || limit == null) {
         throw new Error("IllegalArgumentException: limit is null or undefined");
       }
-      docketObject.name="menu_getAll";
-      docketObject.keyDataAsJSON=`getAll with limit ${limit}`;
-      docketObject.details=`menu getAll method`;
+      docketObject.name = "menu_getAll";
+      docketObject.keyDataAsJSON = `getAll with limit ${limit}`;
+      docketObject.details = `menu getAll method`;
       docketClient.postToDocket(docketObject);
 
       menuCollection.findAll(limit).then((docs) => {
@@ -107,9 +106,9 @@ module.exports.getAll = (limit) => {
         reject(e);
       });
     } catch (e) {
-      docketObject.name="menu_ExceptionOngetAll";
-      docketObject.keyDataAsJSON="menuObject";
-      docketObject.details=`caught Exception on menu_getAll ${e.message}`;
+      docketObject.name = "menu_ExceptionOngetAll";
+      docketObject.keyDataAsJSON = "menuObject";
+      docketObject.details = `caught Exception on menu_getAll ${e.message}`;
       docketClient.postToDocket(docketObject);
       debug(`caught exception ${e}`);
       reject(e);
@@ -126,9 +125,9 @@ module.exports.getById = (id) => {
       if (typeof(id) == "undefined" || id == null) {
         throw new Error("IllegalArgumentException: id is null or undefined");
       }
-      docketObject.name="menu_getById";
-      docketObject.keyDataAsJSON=`menuObject id is ${id}`;
-      docketObject.details=`menu getById initiated`;
+      docketObject.name = "menu_getById";
+      docketObject.keyDataAsJSON = `menuObject id is ${id}`;
+      docketObject.details = `menu getById initiated`;
       docketClient.postToDocket(docketObject);
 
       menuCollection.findById(id)
@@ -147,9 +146,9 @@ module.exports.getById = (id) => {
         });
 
     } catch (e) {
-      docketObject.name="menu_ExceptionOngetById";
-      docketObject.keyDataAsJSON=`menuObject id is ${id}`;
-      docketObject.details=`caught Exception on menu_getById ${e.message}`;
+      docketObject.name = "menu_ExceptionOngetById";
+      docketObject.keyDataAsJSON = `menuObject id is ${id}`;
+      docketObject.details = `caught Exception on menu_getById ${e.message}`;
       docketClient.postToDocket(docketObject);
       debug(`caught exception ${e}`);
       reject(e);
@@ -157,18 +156,18 @@ module.exports.getById = (id) => {
   });
 };
 
-module.exports.getOne=(attribute,value)=> {
-  return new Promise((resolve,reject)=> {
+module.exports.getOne = (attribute, value) => {
+  return new Promise((resolve, reject) => {
     try {
       if (attribute == null || value == null || typeof attribute === 'undefined' || typeof value === 'undefined') {
         throw new Error("IllegalArgumentException: attribute/value is null or undefined");
       }
 
-      docketObject.name="menu_getOne";
-      docketObject.keyDataAsJSON=`menuObject ${attribute} with value ${value}`;
-      docketObject.details=`menu getOne initiated`;
+      docketObject.name = "menu_getOne";
+      docketObject.keyDataAsJSON = `menuObject ${attribute} with value ${value}`;
+      docketObject.details = `menu getOne initiated`;
       docketClient.postToDocket(docketObject);
-      menuCollection.findOne(attribute,value).then((data)=> {
+      menuCollection.findOne(attribute, value).then((data) => {
         if (data) {
           debug(`menu found ${data}`);
           resolve(data);
@@ -177,13 +176,13 @@ module.exports.getOne=(attribute,value)=> {
           debug(`no menu found by this ${attribute} ${value}`);
           resolve({});
         }
-      }).catch((e)=> {
+      }).catch((e) => {
         debug(`failed to find ${e}`);
       });
     } catch (e) {
-      docketObject.name="menu_ExceptionOngetOne";
-      docketObject.keyDataAsJSON=`menuObject ${attribute} with value ${value}`;
-      docketObject.details=`caught Exception on menu_getOne ${e.message}`;
+      docketObject.name = "menu_ExceptionOngetOne";
+      docketObject.keyDataAsJSON = `menuObject ${attribute} with value ${value}`;
+      docketObject.details = `caught Exception on menu_getOne ${e.message}`;
       docketClient.postToDocket(docketObject);
       debug(`caught exception ${e}`);
       reject(e);
@@ -191,18 +190,18 @@ module.exports.getOne=(attribute,value)=> {
   });
 };
 
-module.exports.getMany=(attribute,value)=> {
-  return new Promise((resolve,reject)=> {
+module.exports.getMany = (attribute, value) => {
+  return new Promise((resolve, reject) => {
     try {
       if (attribute == null || value == null || typeof attribute === 'undefined' || typeof value === 'undefined') {
         throw new Error("IllegalArgumentException: attribute/value is null or undefined");
       }
 
-      docketObject.name="menu_getMany";
-      docketObject.keyDataAsJSON=`menuObject ${attribute} with value ${value}`;
-      docketObject.details=`menu getMany initiated`;
+      docketObject.name = "menu_getMany";
+      docketObject.keyDataAsJSON = `menuObject ${attribute} with value ${value}`;
+      docketObject.details = `menu getMany initiated`;
       docketClient.postToDocket(docketObject);
-      menuCollection.findMany(attribute,value).then((data)=> {
+      menuCollection.findMany(attribute, value).then((data) => {
         if (data) {
           debug(`menu found ${data}`);
           resolve(data);
@@ -211,13 +210,13 @@ module.exports.getMany=(attribute,value)=> {
           debug(`no menu found by this ${attribute} ${value}`);
           resolve([]);
         }
-      }).catch((e)=> {
+      }).catch((e) => {
         debug(`failed to find ${e}`);
       });
     } catch (e) {
-      docketObject.name="menu_ExceptionOngetMany";
-      docketObject.keyDataAsJSON=`menuObject ${attribute} with value ${value}`;
-      docketObject.details=`caught Exception on menu_getMany ${e.message}`;
+      docketObject.name = "menu_ExceptionOngetMany";
+      docketObject.keyDataAsJSON = `menuObject ${attribute} with value ${value}`;
+      docketObject.details = `caught Exception on menu_getMany ${e.message}`;
       docketClient.postToDocket(docketObject);
       debug(`caught exception ${e}`);
       reject(e);

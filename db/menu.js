@@ -6,7 +6,7 @@ const ObjectId = require('mongodb')
 const menuSchema = require("./menuSchema");
 
 // Creates a menuCollection collection in the database
-var menuCollection = mongoose.model("menuCollection", menuSchema);
+var menuCollection = mongoose.model("menuCollection1", menuSchema);
 
 // Saves the menuCollection object to the database and returns a Promise
 // The assumption here is that the Object is valid
@@ -43,7 +43,7 @@ module.exports.save = (object) => {
 // if the collectiom has no records it Returns
 // a promise with a result of  empty object i.e. {}
 module.exports.findAll = (limit) => {
-  if(limit < 1) {
+  if (limit < 1) {
     return menuCollection.find({});
   }
   return menuCollection.find({}).limit(limit);
