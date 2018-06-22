@@ -28,6 +28,7 @@ module.exports.schema = {
     },
     "menuItems": {
       "type": "array",
+      "minItems": 1,
       "properties": {
         "menuItemType": {
           "type": "string",
