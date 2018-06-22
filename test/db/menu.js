@@ -31,20 +31,21 @@ describe("db menu testing", () => {
     "menuGroupCode": "Administration",
     "title": "ADMINISTRATION",
     "menuItems": [{
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "ROLE",
-      "title": "Role Management",
-      "menuItemOrder":1
-    },
-    {
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "USER",
-      "title": "User Management",
-      "menuItemOrder":2
-    }],
-    "menuGroupOrder":1,
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management",
+        "menuItemOrder": 1
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management",
+        "menuItemOrder": 2
+      }
+    ],
+    "menuGroupOrder": 1,
     "createdBy": "System",
     "createdDate": new Date().toISOString()
   };
@@ -55,21 +56,21 @@ describe("db menu testing", () => {
     "menuGroupCode": "Maintenance",
     "title": "MAINTENANCE",
     "menuItems": [{
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "ROLE",
-      "title": "Role Management",
-      "menuItemOrder":1
-    },
-    {
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "USER",
-      "title": "User Management",
-      "menuItemOrder":2
-    }
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management",
+        "menuItemOrder": 1
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management",
+        "menuItemOrder": 2
+      }
     ],
-    "menuGroupOrder":1,
+    "menuGroupOrder": 1,
     "createdBy": "System",
     "createdDate": new Date().toISOString()
   };
@@ -80,21 +81,21 @@ describe("db menu testing", () => {
     "menuGroupCode": "Storage",
     "title": "STORAGE",
     "menuItems": [{
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "ROLE",
-      "title": "Role Management",
-      "menuItemOrder":1
-    },
-    {
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "USER",
-      "title": "User Management",
-      "menuItemOrder":2
-    }
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management",
+        "menuItemOrder": 1
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management",
+        "menuItemOrder": 2
+      }
     ],
-    "menuGroupOrder":1,
+    "menuGroupOrder": 1,
     "createdBy": "System",
     "createdDate": new Date().toISOString()
   };
@@ -105,21 +106,21 @@ describe("db menu testing", () => {
     "menuGroupCode": "Audit",
     "title": "AUDIT",
     "menuItems": [{
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "ROLE",
-      "title": "Role Management",
-      "menuItemOrder":1
-    },
-    {
-      "menuItemType": "menu",
-      "applicationCode": "FLUX-CDA",
-      "menuItemCode": "USER",
-      "title": "User Management",
-      "menuItemOrder":2
-    }
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "ROLE",
+        "title": "Role Management",
+        "menuItemOrder": 1
+      },
+      {
+        "menuItemType": "menu",
+        "applicationCode": "FLUX-CDA",
+        "menuItemCode": "USER",
+        "title": "User Management",
+        "menuItemOrder": 2
+      }
     ],
-    "menuGroupOrder":1,
+    "menuGroupOrder": 1,
     "createdBy": "System",
     "createdDate": new Date().toISOString()
   };
@@ -145,20 +146,21 @@ describe("db menu testing", () => {
         "menuGroupCode": "Administration",
         "title": "ADMINISTRATION",
         "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management",
-          "menuItemOrder":1
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management",
-          "menuItemOrder":2
-        }],
-        "menuGroupOrder":1,
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "ROLE",
+            "title": "Role Management",
+            "menuItemOrder": 1
+          },
+          {
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "USER",
+            "title": "User Management",
+            "menuItemOrder": 2
+          }
+        ],
+        "menuGroupOrder": 1,
         "createdDate": new Date().toISOString(),
         "createdBy": "system"
       };
@@ -178,20 +180,21 @@ describe("db menu testing", () => {
         "menuGroupCode": "Administration",
         "title": "ADMINISTRATION",
         "menuItems": [{
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "ROLE",
-          "title": "Role Management",
-          "menuItemOrder":1
-        },
-        {
-          "menuItemType": "menu",
-          "applicationCode": "FLUX-CDA",
-          "menuItemCode": "USER",
-          "title": "User Management",
-          "menuItemOrder":2
-        }],
-        "menuGroupOrder":1,
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "ROLE",
+            "title": "Role Management",
+            "menuItemOrder": 1
+          },
+          {
+            "menuItemType": "menu",
+            "applicationCode": "FLUX-CDA",
+            "menuItemCode": "USER",
+            "title": "User Management",
+            "menuItemOrder": 2
+          }
+        ],
+        "menuGroupOrder": 1,
         "createdDate": new Date().toISOString(),
         "createdBy": "system"
       };
@@ -309,20 +312,21 @@ describe("db menu testing", () => {
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management",
-        "menuItemOrder":1
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management",
-        "menuItemOrder":2
-      }],
-      "menuGroupOrder":1,
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management",
+          "menuItemOrder": 1
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management",
+          "menuItemOrder": 2
+        }
+      ],
+      "menuGroupOrder": 1,
       "createdDate": new Date().toISOString(),
       "createdBy": "system"
     };
@@ -404,20 +408,21 @@ describe("db menu testing", () => {
       "menuGroupCode": "Audit",
       "title": "AUDIT",
       "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management",
-        "menuItemOrder":1
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management",
-        "menuItemOrder":2
-      }],
-      "menuGroupOrder":1,
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management",
+          "menuItemOrder": 1
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management",
+          "menuItemOrder": 2
+        }
+      ],
+      "menuGroupOrder": 1,
       "createdDate": new Date().toISOString(),
       "createdBy": "system"
     };
@@ -428,20 +433,21 @@ describe("db menu testing", () => {
       "menuGroupCode": "Audit1",
       "title": "AUDIT",
       "menuItems": [{
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "ROLE",
-        "title": "Role Management",
-        "menuItemOrder":1
-      },
-      {
-        "menuItemType": "menu",
-        "applicationCode": "FLUX-CDA",
-        "menuItemCode": "USER",
-        "title": "User Management",
-        "menuItemOrder":2
-      }],
-      "menuGroupOrder":1,
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "ROLE",
+          "title": "Role Management",
+          "menuItemOrder": 1
+        },
+        {
+          "menuItemType": "menu",
+          "applicationCode": "FLUX-CDA",
+          "menuItemCode": "USER",
+          "title": "User Management",
+          "menuItemOrder": 2
+        }
+      ],
+      "menuGroupOrder": 1,
       "createdDate": new Date().toISOString(),
       "createdBy": "system"
     };
