@@ -20,7 +20,6 @@ var menuSchema = new mongoose.Schema({
     type: String,
     minLength: 1,
     maxLength: 20,
-    unique: true,
     required: true
   },
   title: {
@@ -100,6 +99,15 @@ var menuSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
+});
+
+menuSchema.index({
+  tenantId: 1,
+  applicationCode: 1,
+  menuGroupCode: 1,
+  title: 1
+}, {
+  unique: true
 });
 
 module.exports = menuSchema;
